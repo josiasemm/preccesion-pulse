@@ -619,7 +619,9 @@ function EimoLogoMark({ className = 'w-6 h-6' }) {
 }
 
 function DashboardPreviewFrame({ isEn, onOpenDashboard }) {
-  const previewSrc = `${import.meta.env.BASE_URL}dashboard-preview.jpg`;
+  const previewSrc = `${import.meta.env.BASE_URL}${
+    isEn ? 'dashboard-preview-en.png' : 'dashboard-preview-es.png'
+  }`;
   return (
     <div
       onClick={onOpenDashboard}
@@ -632,7 +634,7 @@ function DashboardPreviewFrame({ isEn, onOpenDashboard }) {
         }
       }}
       aria-label={isEn ? 'Open interactive EIMO dashboard' : 'Abrir dashboard interactivo de EIMO'}
-      className="group relative max-w-5xl mx-auto mt-10 cursor-pointer"
+      className="group relative max-w-4xl mx-auto mt-10 cursor-pointer"
     >
       {/* Marco estilo tablet con desvanecido limpio inferior */}
       <div className="relative rounded-t-[28px] bg-gradient-to-b from-[#0f3c78] via-slate-700/80 to-white/0 p-[8px] pb-0 sm:p-[11px] sm:pb-0 shadow-[0_18px_45px_-18px_rgba(3,105,161,0.18)] transition-transform duration-300 group-hover:-translate-y-1 overflow-hidden">
