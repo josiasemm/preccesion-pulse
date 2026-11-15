@@ -188,7 +188,7 @@ export default function SymptomsModal({ isOpen, telemetry = {}, lang = 'es', onC
                 <span>{isEn ? 'Time to emesis (hours):' : 'Tiempo a emesis (horas):'}</span>
                 <input
                   type="number"
-                  step="0.5"
+                  step="any"
                   min="0.1"
                   max="24"
                   value={form.time_to_emesis_hours}
@@ -239,9 +239,9 @@ export default function SymptomsModal({ isOpen, telemetry = {}, lang = 'es', onC
                 </span>
                 <input
                   type="number"
-                  step="0.5"
+                  step="any"
                   min="0"
-                  max="14"
+                  max="24"
                   value={form.sleep_hours}
                   onChange={(e) => setForm((p) => ({ ...p, sleep_hours: e.target.value }))}
                   className="mt-1 w-full px-3 py-2 text-xs rounded-xl border border-slate-200"

@@ -149,7 +149,7 @@ export default function VitalsInputModal({ isOpen, telemetry = {}, lang = 'es', 
                   <span className="text-xs font-medium text-slate-700">{f.label}</span>
                   <input
                     type="number"
-                    step={f.step}
+                    step="any"
                     min={f.min}
                     max={f.max}
                     value={form[f.key]}
@@ -171,7 +171,7 @@ export default function VitalsInputModal({ isOpen, telemetry = {}, lang = 'es', 
                   <span className="text-xs font-medium text-slate-700">{f.label}</span>
                   <input
                     type="number"
-                    step={f.step}
+                    step="any"
                     min={f.min}
                     max={f.max}
                     value={form[f.key]}
