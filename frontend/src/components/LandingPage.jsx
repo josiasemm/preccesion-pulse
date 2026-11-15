@@ -337,8 +337,8 @@ const CONTENT = {
     },
     footer: {
       teamLabel: 'Equipo Preccesion & Pulse',
-      members: 'Josias Emmanuel González Moreno · Axel Adolfo Hinojosa Martinez',
-      sub: 'EIMO | Astronaut Health CDSS — Ingeniería Física (UAM-A) & Medicina Aeroespacial',
+      members: 'Josias Emmanuel González Moreno · Axel Adolfo Hinojosa Martínez',
+      sub: 'EIMO | Astronaut Health CDSS',
       repoLabel: 'Repositorio GitHub',
     },
   },
@@ -652,8 +652,8 @@ const CONTENT = {
     },
     footer: {
       teamLabel: 'Team Preccesion & Pulse',
-      members: 'Josias Emmanuel González Moreno · Axel Adolfo Hinojosa Martinez',
-      sub: 'EIMO | Astronaut Health CDSS — Engineering Physics (UAM-A) & Aerospace Medicine',
+      members: 'Josias Emmanuel González Moreno · Axel Adolfo Hinojosa Martínez',
+      sub: 'EIMO | Astronaut Health CDSS',
       repoLabel: 'GitHub Repository',
     },
   },
@@ -774,7 +774,7 @@ function DashboardPreviewFrame({ isEn, lang, onOpenDashboard }) {
 function PillBadge({ icon: Icon, label }) {
   return (
     <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 shadow-2xs text-[11px] font-bold tracking-wider uppercase text-slate-700">
-      <Icon className="w-3.5 h-3.5 text-[#0284c7]" />
+      <Icon className="w-3.5 h-3.5 text-[#0b3d91]" />
       <span>{label}</span>
     </div>
   );
@@ -787,7 +787,7 @@ function PrimaryCtaButton({ label, onClick, size = 'md' }) {
     <button
       type="button"
       onClick={onClick}
-      className={`inline-flex items-center gap-2.5 ${pad} rounded-full bg-gradient-to-r from-[#0369a1] to-[#0284c7] hover:from-[#075985] hover:to-[#0369a1] text-white font-semibold shadow-md shadow-sky-700/20 transition-all cursor-pointer whitespace-nowrap`}
+      className={`inline-flex items-center gap-2.5 ${pad} rounded-full bg-[#0b3d91] hover:bg-[#082d6b] text-white font-semibold shadow-md shadow-[#0b3d91]/25 transition-all cursor-pointer whitespace-nowrap`}
     >
       <span>{label}</span>
       <span
@@ -825,19 +825,19 @@ export default function LandingPage({
           </a>
 
           <nav className="hidden lg:flex items-center gap-6 text-[13px] font-medium text-slate-600">
-            <a href="#about" className="hover:text-[#0284c7] transition-colors">
+            <a href="#about" className="hover:text-[#0b3d91] transition-colors">
               {c.nav.about}
             </a>
-            <a href="#users" className="hover:text-[#0284c7] transition-colors">
+            <a href="#users" className="hover:text-[#0b3d91] transition-colors">
               {c.nav.users}
             </a>
-            <a href="#how" className="hover:text-[#0284c7] transition-colors">
+            <a href="#how" className="hover:text-[#0b3d91] transition-colors">
               {c.nav.how}
             </a>
-            <a href="#cases" className="hover:text-[#0284c7] transition-colors">
+            <a href="#cases" className="hover:text-[#0b3d91] transition-colors">
               {c.nav.cases}
             </a>
-            <a href="#sources" className="hover:text-[#0284c7] transition-colors">
+            <a href="#sources" className="hover:text-[#0b3d91] transition-colors">
               {c.nav.sources}
             </a>
           </nav>
@@ -875,17 +875,17 @@ export default function LandingPage({
       {/* Hero con brillo azul cielo clínico */}
       <section
         id="hero"
-        className="relative bg-gradient-to-b from-sky-100/80 via-sky-50/40 to-white pt-14 pb-4 px-5 text-center"
+        className="relative bg-gradient-to-b from-blue-100/75 via-slate-50/70 to-white pt-14 pb-4 px-5 text-center"
       >
         <div className="max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/90 border border-sky-200 text-sky-800 text-[11.5px] font-semibold shadow-2xs mb-6">
-            <Atom className="w-3.5 h-3.5 text-[#0284c7]" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/90 border border-blue-200 text-[#0b3d91] text-[11.5px] font-semibold shadow-2xs mb-6">
+            <Atom className="w-3.5 h-3.5 text-[#0b3d91]" />
             <span>{c.hero.eyebrow}</span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-[54px] font-extrabold tracking-tight text-slate-900 leading-[1.12]">
             {c.hero.titleStart}
-            <span className="text-[#0284c7]">{c.hero.titleAccent}</span>
+            <span className="text-[#0b3d91]">{c.hero.titleAccent}</span>
           </h1>
 
           <p className="max-w-2xl mx-auto mt-5 text-base sm:text-lg text-slate-600 leading-relaxed">
@@ -897,7 +897,7 @@ export default function LandingPage({
             <button
               type="button"
               onClick={onEnterDemo}
-              className="text-xs font-semibold text-sky-700 hover:text-sky-900 hover:underline cursor-pointer"
+              className="text-xs font-semibold text-[#0b3d91] hover:text-[#07265c] hover:underline cursor-pointer"
             >
               {c.hero.demoCta} →
             </button>
@@ -915,7 +915,7 @@ export default function LandingPage({
           <PillBadge icon={AlertTriangle} label={c.why.pill} />
           <h2 className="mt-4 text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">
             {c.why.titleStart}
-            <span className="text-[#0284c7]">{c.why.titleAccent}</span>
+            <span className="text-[#0b3d91]">{c.why.titleAccent}</span>
           </h2>
 
           <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5 text-left">
@@ -926,7 +926,7 @@ export default function LandingPage({
                   key={card.title}
                   className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-sm flex flex-col gap-3"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-sky-50 border border-sky-100 text-[#0284c7] flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-blue-50/80 border border-blue-100 text-[#0b3d91] flex items-center justify-center">
                     <CardIcon className="w-5 h-5" />
                   </div>
                   <h3 className="text-base font-bold text-slate-900">{card.title}</h3>
@@ -945,7 +945,7 @@ export default function LandingPage({
             <PillBadge icon={Sparkles} label={c.about.pill} />
             <h2 className="mt-4 text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">
               {c.about.titleStart}
-              <span className="text-[#0284c7]">{c.about.titleAccent}</span>
+              <span className="text-[#0b3d91]">{c.about.titleAccent}</span>
             </h2>
           </div>
 
@@ -955,7 +955,7 @@ export default function LandingPage({
                 const PIcon = p.icon;
                 return (
                   <div key={p.title} className="flex items-start gap-4">
-                    <div className="w-9 h-9 rounded-xl bg-sky-50 border border-sky-100 text-[#0284c7] flex items-center justify-center shrink-0 mt-0.5">
+                    <div className="w-9 h-9 rounded-xl bg-blue-50/80 border border-blue-100 text-[#0b3d91] flex items-center justify-center shrink-0 mt-0.5">
                       <PIcon className="w-4 h-4" />
                     </div>
                     <div>
@@ -969,14 +969,14 @@ export default function LandingPage({
 
             <div className="bg-[#f8fafc] border border-slate-200 rounded-2xl p-6 sm:p-7 space-y-6">
               <h3 className="text-xl font-bold text-slate-900">
-                <span className="text-[#0284c7]">{c.about.valueTitleStart}</span>
+                <span className="text-[#0b3d91]">{c.about.valueTitleStart}</span>
                 {c.about.valueTitleAccent}
               </h3>
               {c.about.values.map((v) => {
                 const VIcon = v.icon;
                 return (
                   <div key={v.title} className="flex items-start gap-4">
-                    <div className="w-9 h-9 rounded-xl bg-white border border-slate-200 text-[#0284c7] flex items-center justify-center shrink-0 mt-0.5">
+                    <div className="w-9 h-9 rounded-xl bg-white border border-slate-200 text-[#0b3d91] flex items-center justify-center shrink-0 mt-0.5">
                       <VIcon className="w-4 h-4" />
                     </div>
                     <div>
@@ -997,7 +997,7 @@ export default function LandingPage({
           <PillBadge icon={Users} label={c.users.pill} />
           <h2 className="mt-4 text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">
             {c.users.titleStart}
-            <span className="text-[#0284c7]">{c.users.titleAccent}</span>
+            <span className="text-[#0b3d91]">{c.users.titleAccent}</span>
           </h2>
 
           <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5 text-left">
@@ -1021,7 +1021,7 @@ export default function LandingPage({
             <PillBadge icon={Compass} label={c.how.pill} />
             <h2 className="mt-4 text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">
               {c.how.titleStart}
-              <span className="text-[#0284c7]">{c.how.titleAccent}</span>
+              <span className="text-[#0b3d91]">{c.how.titleAccent}</span>
             </h2>
           </div>
 
@@ -1031,7 +1031,7 @@ export default function LandingPage({
                 key={step.num}
                 className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm flex flex-col sm:flex-row sm:items-start gap-4"
               >
-                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#0369a1] to-[#0284c7] text-white font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">
+                <div className="w-9 h-9 rounded-full bg-[#0b3d91] text-white font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">
                   {step.num}
                 </div>
                 <div>
@@ -1051,7 +1051,7 @@ export default function LandingPage({
             <PillBadge icon={Database} label={c.cases.pill} />
             <h2 className="mt-4 text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">
               {c.cases.titleStart}
-              <span className="text-[#0284c7]">{c.cases.titleAccent}</span>
+              <span className="text-[#0b3d91]">{c.cases.titleAccent}</span>
             </h2>
             <p className="max-w-2xl mx-auto mt-3 text-sm text-slate-600">{c.cases.note}</p>
           </div>
@@ -1065,20 +1065,20 @@ export default function LandingPage({
                   className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm flex flex-col gap-3"
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#0284c7]">
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#0b3d91]">
                       {item.tag}
                     </span>
-                    <CaseIcon className="w-4 h-4 text-[#0284c7]" />
+                    <CaseIcon className="w-4 h-4 text-[#0b3d91]" />
                   </div>
                   <h3 className="text-lg font-bold text-slate-900 leading-snug">{item.title}</h3>
-                  <p className="text-xs font-semibold text-sky-800 bg-sky-50 border border-sky-100 rounded-xl px-3 py-2 leading-relaxed">
+                  <p className="text-xs font-semibold text-[#0b3d91] bg-blue-50/80 border border-blue-100 rounded-xl px-3 py-2 leading-relaxed">
                     {item.question}
                   </p>
                   <p className="text-sm text-slate-600 leading-relaxed flex-1">{item.body}</p>
                   <button
                     type="button"
                     onClick={onEnterDemo}
-                    className="self-start mt-1 inline-flex items-center gap-1.5 text-xs font-bold text-[#0284c7] hover:text-sky-900 cursor-pointer"
+                    className="self-start mt-1 inline-flex items-center gap-1.5 text-xs font-bold text-[#0b3d91] hover:text-[#07265c] cursor-pointer"
                   >
                     <span>{item.action}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -1097,7 +1097,7 @@ export default function LandingPage({
             <PillBadge icon={CheckCircle2} label={c.conclusion.pill} />
             <h2 className="mt-4 text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">
               {c.conclusion.titleStart}
-              <span className="text-[#0284c7]">{c.conclusion.titleAccent}</span>
+              <span className="text-[#0b3d91]">{c.conclusion.titleAccent}</span>
             </h2>
           </div>
 
@@ -1121,7 +1121,7 @@ export default function LandingPage({
           </div>
 
           <p className="max-w-3xl mx-auto mt-8 text-center text-sm font-medium text-slate-700">
-            <span className="font-bold text-[#0284c7]">{c.conclusion.closingHighlight}</span>
+            <span className="font-bold text-[#0b3d91]">{c.conclusion.closingHighlight}</span>
             {c.conclusion.closingRest}
           </p>
         </div>
@@ -1134,7 +1134,7 @@ export default function LandingPage({
             <PillBadge icon={HelpCircle} label={c.faq.pill} />
             <h2 className="mt-4 text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">
               {c.faq.titleStart}
-              <span className="text-[#0284c7]">{c.faq.titleAccent}</span>
+              <span className="text-[#0b3d91]">{c.faq.titleAccent}</span>
             </h2>
           </div>
 
@@ -1155,9 +1155,9 @@ export default function LandingPage({
                       {item.q}
                     </span>
                     {isOpen ? (
-                      <Minus className="w-4 h-4 text-[#0284c7] shrink-0" />
+                      <Minus className="w-4 h-4 text-[#0b3d91] shrink-0" />
                     ) : (
-                      <Plus className="w-4 h-4 text-[#0284c7] shrink-0" />
+                      <Plus className="w-4 h-4 text-[#0b3d91] shrink-0" />
                     )}
                   </button>
                   {isOpen && (
@@ -1179,7 +1179,7 @@ export default function LandingPage({
             <PillBadge icon={Database} label={c.sources.pill} />
             <h2 className="mt-4 text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">
               {c.sources.titleStart}
-              <span className="text-[#0284c7]">{c.sources.titleAccent}</span>
+              <span className="text-[#0b3d91]">{c.sources.titleAccent}</span>
             </h2>
           </div>
 
@@ -1191,7 +1191,7 @@ export default function LandingPage({
                   key={card.title}
                   className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm flex flex-col gap-3.5"
                 >
-                  <div className="w-9 h-9 rounded-xl bg-sky-50 border border-sky-100 text-[#0284c7] flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-xl bg-blue-50/80 border border-blue-100 text-[#0b3d91] flex items-center justify-center">
                     <SIcon className="w-4 h-4" />
                   </div>
                   <h3 className="text-base font-bold text-slate-900">{card.title}</h3>
@@ -1203,7 +1203,7 @@ export default function LandingPage({
                         href={lnk.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sky-50 hover:bg-sky-100 border border-sky-200 text-xs font-bold text-[#0369a1] transition-colors"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50/80 hover:bg-blue-100 border border-blue-200 text-xs font-bold text-[#0b3d91] transition-colors"
                       >
                         <span>{lnk.label}</span>
                         <ExternalLink className="w-3 h-3" />
@@ -1222,11 +1222,11 @@ export default function LandingPage({
       </section>
 
       {/* Banner Final CTA */}
-      <section className="py-16 px-5 bg-gradient-to-b from-white via-sky-50/70 to-sky-100/70 text-center">
+      <section className="py-16 px-5 bg-gradient-to-b from-white via-blue-50/60 to-blue-100/75 text-center">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
             {c.bottomCta.titleStart}
-            <span className="text-[#0284c7]">{c.bottomCta.titleAccent}</span>
+            <span className="text-[#0b3d91]">{c.bottomCta.titleAccent}</span>
           </h2>
           <p className="mt-3 text-sm text-slate-600">{c.bottomCta.subtitle}</p>
           <div className="mt-7">
@@ -1244,7 +1244,7 @@ export default function LandingPage({
                 <EimoLogoMark className="w-4 h-4" />
               </div>
               <span className="font-extrabold tracking-tight text-base">EIMO</span>
-              <span className="text-xs font-semibold text-sky-700 bg-sky-50 border border-sky-200 px-2.5 py-0.5 rounded-full">
+              <span className="text-xs font-semibold text-[#0b3d91] bg-blue-50/80 border border-blue-200 px-2.5 py-0.5 rounded-full">
                 {c.footer.teamLabel}
               </span>
             </div>
@@ -1253,23 +1253,23 @@ export default function LandingPage({
           </div>
 
           <div className="flex flex-wrap items-center gap-5 text-xs font-semibold text-slate-600">
-            <a href="#about" className="hover:text-[#0284c7] transition-colors">
+            <a href="#about" className="hover:text-[#0b3d91] transition-colors">
               {c.nav.about}
             </a>
-            <a href="#how" className="hover:text-[#0284c7] transition-colors">
+            <a href="#how" className="hover:text-[#0b3d91] transition-colors">
               {c.nav.how}
             </a>
-            <a href="#cases" className="hover:text-[#0284c7] transition-colors">
+            <a href="#cases" className="hover:text-[#0b3d91] transition-colors">
               {c.nav.cases}
             </a>
-            <a href="#sources" className="hover:text-[#0284c7] transition-colors">
+            <a href="#sources" className="hover:text-[#0b3d91] transition-colors">
               {c.nav.sources}
             </a>
             <a
               href="https://github.com/josiasemm/preccesion-pulse"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-[#0284c7] hover:underline"
+              className="inline-flex items-center gap-1 text-[#0b3d91] hover:underline"
             >
               <span>{c.footer.repoLabel}</span>
               <ExternalLink className="w-3 h-3" />
