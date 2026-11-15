@@ -219,6 +219,25 @@ function safeSetStorage(key, val) {
   }
 }
 
+function buildViewUrl(view, demo = false) {
+  const url = new URL(window.location.href);
+  url.searchParams.delete('preview');
+  if (view === 'dashboard') {
+    url.searchParams.set('view', 'dashboard');
+    if (demo) {
+      url.searchParams.set('demo', '1');
+    } else {
+      url.searchParams.delete('demo');
+    }
+  } else {
+    url.searchParams.delete('view');
+    url.searchParams.delete('demo');
+  }
+  url.hash = '';
+  const search = url.searchParams.toString();
+  return `${url.pathname}${search ? `?${search}` : ''}`;
+}
+
 export default function App() {
   const [environments, setEnvironments] = useState({});
   const [protocols, setProtocols] = useState({});
@@ -285,6 +304,30 @@ export default function App() {
   useEffect(() => {
     document.documentElement.lang = lang;
   }, [lang]);
+
+  useEffect(() => {
+    if (isEmbedPreview) return undefined;
+    const handlePopState = () => {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const isUrlDemo = params.get('demo') === '1' || params.get('demo') === 'true';
+        const isDirectView = params.get('view') === 'dashboard';
+        if (isUrlDemo || isDirectView) {
+          setShowLanding(false);
+          setDemoMode(isUrlDemo);
+        } else {
+          setShowLanding(true);
+          setDemoMode(false);
+          setBaselineModalOpen(false);
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch {
+        // ignore URL parse issues
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [isEmbedPreview]);
 
   useEffect(() => () => {
     if (importTimerRef.current) {
@@ -657,25 +700,47 @@ export default function App() {
 
   const handleEnterDashboard = () => {
     setShowLanding(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
     try {
+      const nextUrl = buildViewUrl('dashboard', false);
+      if (`${window.location.pathname}${window.location.search}` !== nextUrl) {
+        window.history.pushState({ eimoView: 'dashboard', demo: false }, '', nextUrl);
+      }
       if (!demoMode && !localStorage.getItem('eimo_onboarding_seen')) {
         setBaselineModalOpen(true);
       }
     } catch {
-      // ignore storage access issues
+      // ignore history or storage access issues
     }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleEnterDemo = () => {
     setDemoMode(true);
     setBaselineModalOpen(false);
     setShowLanding(false);
+    try {
+      const nextUrl = buildViewUrl('dashboard', true);
+      if (`${window.location.pathname}${window.location.search}` !== nextUrl) {
+        window.history.pushState({ eimoView: 'dashboard', demo: true }, '', nextUrl);
+      }
+    } catch {
+      // ignore history errors
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleGoHome = () => {
     setShowLanding(true);
+    setDemoMode(false);
+    setBaselineModalOpen(false);
+    try {
+      const nextUrl = buildViewUrl('landing', false);
+      if (`${window.location.pathname}${window.location.search}` !== nextUrl) {
+        window.history.pushState({ eimoView: 'landing', demo: false }, '', nextUrl);
+      }
+    } catch {
+      // ignore history errors
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
