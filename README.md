@@ -20,7 +20,7 @@
 
 > [!IMPORTANT]
 > **Deep-space crews cannot rely on real-time Earth flight surgeons when communication latency reaches up to 44 minutes round-trip.**  
-> **EIMO** pairs a deterministic, coupled biophysical engine (hydrostatics, cabin $\text{ppCO}_2$ conservation, radiation attenuation, bone/renal Wolff kinetics, and 3-layer organic-mimic exclusion) with an offline-first clinical interface, real-time $\Delta t$ simulation, interactive microgravity procedures, and Store-and-Forward emergency telemetry queuing.
+> **EIMO** pairs a deterministic, coupled biophysical engine (hydrostatics, cabin `ppCO₂` conservation, radiation attenuation, bone/renal Wolff kinetics, and 3-layer organic-mimic exclusion) with an offline-first clinical interface, real-time `Δt` simulation, interactive microgravity procedures, and Store-and-Forward emergency telemetry queuing.
 
 ---
 
@@ -30,12 +30,12 @@
 
 1. **Coupled Biophysical Engine:** Evaluates five interconnected physiological systems using first-principles physics rather than isolated static thresholds.
 2. **Multi-Gravity SWaP Matrix:** Adapts hardware availability, round-trip communication delay (ISS `0.05s`, Transit `854s`, Lunar Rover `2.6s`, Mars Base `1,501s` — up to ~44 min at solar conjunction), and gravitational loading (`0g`, `0.165g`, `0.38g`).
-3. **Interactive Crew Workflow:** Combines passive telemetry monitoring, live $\Delta t$ integration, in-browser psychomotor vigilance screening (`30 s` adapted demo vs `180 s` NASA standard `PVT-B`), Web Audio relative dBFS audiometry, bilateral OD/OS Amsler grid screening (`ΔTRT250` unified OCT metric), `0.1 Hz` vagal breathing, and real CSV/JSON telemetry ingestion.
+3. **Interactive Crew Workflow:** Combines passive telemetry monitoring, live `Δt` integration, in-browser psychomotor vigilance screening (`30 s` adapted demo vs `180 s` NASA standard `PVT-B`), Web Audio relative dBFS audiometry, bilateral OD/OS Amsler grid screening (`ΔTRT250` unified OCT metric), `0.1 Hz` vagal breathing, and real CSV/JSON telemetry ingestion.
 4. **Two-Lane Emergency Architecture:** Separates routine autonomous care (Lane 1) from acute red-flag stabilization (`ABCDE 0g + FAST`) and Store-and-Forward packet queuing to Mission Control (Lane 2).
 
 ### 🛡️ Platform Capabilities
 - [x] **100% Autonomous Browser Execution + Continuous Local State**: Runs the full deterministic biophysical engine natively in the browser with `localStorage` persistence (GitHub Pages ready) or against the optional local FastAPI + SQLite server (`VITE_API_BASE_URL`)
-- [x] **Real-Time $\Delta t$ Physics Step**: Integrates $\text{ppCO}_2$ buildup/CDRA removal and sympathetic/ONSD response over discrete time steps
+- [x] **Real-Time `Δt` Physics Step**: Integrates `ppCO₂` buildup/CDRA removal and sympathetic/ONSD response over discrete time steps
 - [x] **Interactive Countermeasures**: Toggle SPE storm shelter, potassium citrate, alendronate, pre-sleep window, and CDRA scrubber efficiency directly against the engine
 - [x] **Store-and-Forward Queue (Lane 2)**: Queues acute emergency packets offline and syncs them when Earth link windows open
 - [x] **CSV / JSON Telemetry Import**: Load multi-step mission telemetry logs directly into the evaluation pipeline
@@ -71,8 +71,8 @@ All physiological thresholds, radiation limits, and clinical procedures in **EIM
 
 | Standard / Source | Domain Applied in EIMO |
 | :--- | :--- |
-| **[NASA-STD-3001 Vol. 1 & Vol. 2](https://standards.nasa.gov/)** | Cabin $\text{ppCO}_2$ limits (`[V2 6004]`), continuous/intermittent acoustic noise limits (`[V2 6078]`, `[V2 6080]`), spacesuit $P_{I\text{CO}_2}$ (`[V2 11039]`), oxygen flammability `< 23.5%` (`[V2 11040]`), 30-day BFO radiation limits (`250 mGy-Eq`), and career effective dose (`< 600 mSv`) |
-| **[OCHMO-STD-100.1A & Technical Briefs](https://www.nasa.gov/ochmo/hsa-standards/)** | Crew medical selection/waivers (`OCHMO-STD-100.1A`), $\text{CO}_2$ (`OCHMO-TB-004`), habitable atmosphere/hypoxia (`OCHMO-TB-003`), ionizing radiation (`OCHMO-TB-020`), orthostatic intolerance/EDL (`OCHMO-TB-019`, `OCHMO-TB-051`), SANS (`OCHMO-MTB-001`, unified $\Delta\text{TRT250}$), and urinary/renal health (`OCHMO-MTB-003`) |
+| **[NASA-STD-3001 Vol. 1 & Vol. 2](https://standards.nasa.gov/)** | Cabin `ppCO₂` limits (`[V2 6004]`), continuous/intermittent acoustic noise limits (`[V2 6078]`, `[V2 6080]`), spacesuit `P_ICO₂` (`[V2 11039]`), oxygen flammability `< 23.5%` (`[V2 11040]`), 30-day BFO radiation limits (`250 mGy-Eq`), and career effective dose (`< 600 mSv`) |
+| **[OCHMO-STD-100.1A & Technical Briefs](https://www.nasa.gov/ochmo/hsa-standards/)** | Crew medical selection/waivers (`OCHMO-STD-100.1A`), `CO₂` (`OCHMO-TB-004`), habitable atmosphere/hypoxia (`OCHMO-TB-003`), ionizing radiation (`OCHMO-TB-020`), orthostatic intolerance/EDL (`OCHMO-TB-019`, `OCHMO-TB-051`), SANS (`OCHMO-MTB-001`, unified `ΔTRT250`), and urinary/renal health (`OCHMO-MTB-003`) |
 | **NASA Human Research Program (HRP) & Brief PVT-B** | `30 s` rapid demo screening adapted from the 3-minute Brief Psychomotor Vigilance Test (`PVT-B`, lapse `≥ 355 ms`) |
 | **[REMM (HHS Radiation Emergency Medical Management)](https://remm.hhs.gov/)** | Andrews lymphocyte depletion kinetics and serial CBC tracking for acute radiation biodosimetry |
 | **[NASA OCHMO In-Flight Medical Care](https://www.nasa.gov/ochmo/health-and-medical-systems/in-flight-medical-care/) & [OCHMO-STD-100.1A](https://www.nasa.gov/ochmo/aerospace-medical-certification-standard/)** | Spaceflight medical selection, pre/in/post-flight vital signs monitoring (pulse, BP, temperature, respiratory rate, pulse oximetry), and [OCHMO Technical Briefs](https://www.nasa.gov/ochmo/hsa-standards/ochmo-technical-briefs/) |
@@ -82,12 +82,12 @@ All physiological thresholds, radiation limits, and clinical procedures in **EIM
 * **Development Acceleration:** Superintelligence (SI) software engineering tools were used during hackathon design, equation verification, UI refactoring, and automated QA testing.
 
 ### Scientific Validation Boundary (Congress Transparency)
-- **Exact Physics & Verified NASA/OCHMO Standards:** Stevin hydrostatic shift ($\Delta P = \rho \Delta g h$), dynamic Alveolar Gas Equation ($P_AO_2$ from `cabin_pressure_psia`, `cabin_o2_percent`, and $\text{ppCO}_2$), $\text{ppCO}_2$ conservation per habitable volume $V_{\text{cab}}$, NASA-STD-3001 thresholds (`[V2 6004/6078/6080/11039/11040]`, including $< 23.5\%$ O₂ flammability ceiling), BFO `250 mGy-Eq` / career `600 mSv`, and REMM Andrews biodosimetry triggers.
-- **EIMO v1.0 Parametric Approximations:** First-order plasma volume decay ($\tau = 2.5\text{ d}$), mono-exponential SPE proton proxy ($\lambda_{\text{SPE}} = 12\text{ g/cm}^2$, reference areal shielding range $x_{\text{ref}} = 5\text{–}30\text{ g/cm}^2$), Wolff BMD loss ($\alpha = 1.4\%/\text{mo}$, asymptotically capped at $-35\%$), and scalar renal supersaturation index $I_{\text{renal}}$.
+- **Exact Physics & Verified NASA/OCHMO Standards:** Stevin hydrostatic shift (`ΔP = ρ Δg h`), dynamic Alveolar Gas Equation (`PAO₂` from `cabin_pressure_psia`, `cabin_o2_percent`, and `ppCO₂`), `ppCO₂` conservation per habitable volume `V_cab`, NASA-STD-3001 thresholds (`[V2 6004/6078/6080/11039/11040]`, including `< 23.5%` O₂ flammability ceiling), BFO `250 mGy-Eq` / career `600 mSv`, and REMM Andrews biodosimetry triggers.
+- **EIMO v1.0 Parametric Approximations:** First-order plasma volume decay (`τ = 2.5 d`), mono-exponential SPE proton proxy (`λ_SPE = 12 g/cm²`, reference areal shielding range `x_ref = 5–30 g/cm²`), Wolff BMD loss (`α = 1.4%/mo`, asymptotically capped at `-35%`), and scalar renal supersaturation index `I_renal`.
 
 Sample telemetry datasets for testing CSV/JSON ingestion are included in [`data/`](data/):
 - [`data/nominal_iss_day.csv`](data/nominal_iss_day.csv) — Nominal ISS day within NASA-STD-3001 thresholds.
-- [`data/cdra_co2_failure_progression.csv`](data/cdra_co2_failure_progression.csv) — Multi-step CDRA scrubber degradation showing coupled $\text{ppCO}_2$, ONSD, and PVT-B progression.
+- [`data/cdra_co2_failure_progression.csv`](data/cdra_co2_failure_progression.csv) — Multi-step CDRA scrubber degradation showing coupled `ppCO₂`, ONSD, and PVT-B progression.
 - [`data/spe_solar_storm_transit.json`](data/spe_solar_storm_transit.json) — Acute Solar Particle Event (`380 mGy-Eq` BFO) during deep-space transit.
 
 ---
@@ -140,7 +140,7 @@ space-apps-2026/
 | `GET` | `/api/baseline` | — | Returns persisted crew baseline profile (with auto-resolved `age` and `mission_day`) |
 | `POST` | `/api/baseline` | `BaselineProfile` | Saves or updates crew baseline profile in SQLite |
 | `POST` | `/api/evaluate` | `TelemetryInput`, `?lang=es\|en&persist=true\|false` | Evaluates full 5-model physiological + SWaP state for submitted telemetry |
-| `POST` | `/api/step` | `StepRequest` (`dt_minutes` `0..1440`), `?lang=es\|en` | Integrates discrete $\Delta t$ physics step and returns updated telemetry + evaluation |
+| `POST` | `/api/step` | `StepRequest` (`dt_minutes` `0..1440`), `?lang=es\|en` | Integrates discrete `Δt` physics step and returns updated telemetry + evaluation |
 | `GET` | `/api/history` | — | Returns last 15 persisted evaluations from SQLite |
 | `DELETE` | `/api/history` | — | Clears `evaluation_logs` table while preserving baseline profile |
 | `GET` | `/api/emergency-queue` | — | Lists Store-and-Forward Track 2 packets (`QUEUED_FOR_EARTH_LINK` / `TRANSMITTED_TO_MCC`) |
