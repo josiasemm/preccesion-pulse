@@ -123,8 +123,8 @@ export default function VitalsInputModal({ isOpen, telemetry = {}, lang = 'es', 
               </h2>
               <p className="text-xs text-slate-600">
                 {isEn
-                  ? 'Persists a validated reading to SQLite and updates the body map.'
-                  : 'Guarda una nueva lectura validada en SQLite y recalcula el mapa al instante.'}
+                  ? 'Persists a validated reading to local storage and updates the body map.'
+                  : 'Guarda una nueva lectura validada en almacenamiento local y recalcula el mapa al instante.'}
               </p>
             </div>
           </div>

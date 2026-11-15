@@ -730,8 +730,8 @@ export default function EmergencyModal({
               </div>
               <p>
                 {isEn
-                  ? `Packets update live as entries change and queue into SQLite when RTT (${rttSeconds}s) prevents synchronous ground voice consult.`
-                  : `Los paquetes se actualizan en tiempo real conforme ingresas datos y se encolan en SQLite cuando el retardo RTT (${rttSeconds}s) impide telemedicina síncrona con Tierra.`}
+                  ? `Packets update live as entries change and queue locally when RTT (${rttSeconds}s) prevents synchronous ground voice consult.`
+                  : `Los paquetes se actualizan en tiempo real conforme ingresas datos y se encolan localmente cuando el retardo RTT (${rttSeconds}s) impide telemedicina síncrona con Tierra.`}
               </p>
             </div>
           </div>

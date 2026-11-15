@@ -63,7 +63,7 @@ export default function TrendChart({ history = [], lang = 'es' }) {
         <div className="flex items-center gap-2">
           <TrendingUp className="w-4 h-4 text-sky-600" />
           <h3 className="text-xs sm:text-sm font-bold text-slate-800">
-            {isEn ? 'Cabin ppCO₂ Trend (Local SQLite)' : 'Tendencia de ppCO₂ en Cabina (SQLite Local)'}
+            {isEn ? 'Cabin ppCO₂ Trend (Local Log)' : 'Tendencia de ppCO₂ en Cabina (Bitácora Local)'}
           </h3>
         </div>
         <div className="flex items-center gap-2.5">
@@ -85,7 +85,7 @@ export default function TrendChart({ history = [], lang = 'es' }) {
       {points.length === 0 ? (
         <p className="text-xs text-slate-500 py-8 text-center">
           {isEn
-            ? 'No evaluations recorded in local SQLite yet.'
+            ? 'No evaluations recorded in local storage yet.'
             : 'Aún no hay suficientes registros en la bitácora local para graficar tendencia.'}
         </p>
       ) : (

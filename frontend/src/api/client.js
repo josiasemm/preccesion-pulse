@@ -1,7 +1,9 @@
-const API_BASE = (import.meta.env.VITE_API_BASE_URL || '/api').replace(/\/$/, '');
+import { localApi } from '../engine/index.js';
+
+const REMOTE_API_BASE = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
 
 async function request(path, options = {}) {
-  const res = await fetch(`${API_BASE}${path}`, {
+  const res = await fetch(`${REMOTE_API_BASE}${path}`, {
     headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
     ...options,
   });
@@ -12,7 +14,7 @@ async function request(path, options = {}) {
   return res.json();
 }
 
-export const api = {
+const remoteApi = {
   getEnvironments: (lang = 'es') => request(`/environments?lang=${encodeURIComponent(lang)}`),
   getProtocols: (lang = 'es') => request(`/protocols?lang=${encodeURIComponent(lang)}`),
   getScenarios: (lang = 'es') => request(`/scenarios?lang=${encodeURIComponent(lang)}`),
@@ -56,3 +58,7 @@ export const api = {
       method: 'DELETE',
     }),
 };
+
+// Por defecto corre 100% offline-first en el navegador (ideal para GitHub Pages).
+// Si se define VITE_API_BASE_URL, delega las peticiones al backend FastAPI remoto.
+export const api = REMOTE_API_BASE ? remoteApi : localApi;

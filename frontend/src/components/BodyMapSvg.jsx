@@ -412,7 +412,7 @@ export default function BodyMapSvg({
           <div className="border-t border-slate-200 pt-3">
             <div className="flex items-center justify-between gap-2 mb-2">
               <span className="text-[11px] font-bold uppercase tracking-wider text-slate-600">
-                {isEn ? 'Recent Evaluations Log (SQLite)' : 'Bitácora Reciente (SQLite)'}
+                {isEn ? 'Recent Evaluations Log (Local)' : 'Bitácora Reciente (Local)'}
               </span>
               <div className="flex items-center gap-3">
                 <span className="text-[11px] text-slate-600 tabular-nums">

@@ -588,8 +588,8 @@ export default function App() {
           : '';
       setImportNotice(
         lang === 'en'
-          ? `Imported ${importedCount} row(s) from ${file.name} and persisted to SQLite.${truncatedNote}`
-          : `Importadas ${importedCount} fila(s) desde ${file.name} y guardadas en SQLite.${truncatedNote}`
+          ? `Imported ${importedCount} row(s) from ${file.name} and saved locally.${truncatedNote}`
+          : `Importadas ${importedCount} fila(s) desde ${file.name} y guardadas en almacenamiento local.${truncatedNote}`
       );
       if (importTimerRef.current) clearTimeout(importTimerRef.current);
       importTimerRef.current = setTimeout(() => setImportNotice(null), 5000);
@@ -625,8 +625,8 @@ export default function App() {
       {backendError && (
         <div className="mx-6 mt-4 p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-center justify-between gap-3">
           <span>
-            {lang === 'en' ? 'API backend error' : 'Error en backend FastAPI'}{' '}
-            <code>/api</code> ({backendError}).
+            {lang === 'en' ? 'Clinical engine error' : 'Error en motor clínico'}{' '}
+            ({backendError}).
           </span>
           <button
             type="button"
