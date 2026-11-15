@@ -14,6 +14,7 @@ import VitalsInputModal from './components/VitalsInputModal';
 import SymptomsModal from './components/SymptomsModal';
 import PhysicsFormulasModal from './components/PhysicsFormulasModal';
 import FloatingMenu from './components/FloatingMenu';
+import LandingPage from './components/LandingPage';
 import { TRANSLATIONS } from './i18n';
 import { BookOpen, CheckCircle2, AlertTriangle, ShieldAlert } from 'lucide-react';
 
@@ -227,6 +228,16 @@ export default function App() {
   const [activeEnvId, setActiveEnvId] = useState('iss');
   const [selectedZone, setSelectedZone] = useState('head_neuro_ocular');
   const [demoMode, setDemoMode] = useState(false);
+  const [showLanding, setShowLanding] = useState(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const isDirectDemo = params.get('demo') === '1' || params.get('demo') === 'true';
+      const isDirectView = params.get('view') === 'dashboard';
+      return !(isDirectDemo || isDirectView);
+    } catch {
+      return true;
+    }
+  });
   const [activeScenarioId, setActiveScenarioId] = useState('nominal');
   const [telemetry, setTelemetry] = useState(null);
   const [evaluation, setEvaluation] = useState(null);
@@ -356,9 +367,10 @@ export default function App() {
 
         const params = new URLSearchParams(window.location.search);
         const isUrlDemo = params.get('demo') === '1' || params.get('demo') === 'true';
+        const isDirectDashboard = params.get('view') === 'dashboard';
         if (isUrlDemo) {
           setDemoMode(true);
-        } else if (!localStorage.getItem('eimo_onboarding_seen')) {
+        } else if (isDirectDashboard && !localStorage.getItem('eimo_onboarding_seen')) {
           setBaselineModalOpen(true);
         }
       } catch (err) {
@@ -623,6 +635,41 @@ export default function App() {
 
   const displayTelemetry = telemetry || {};
 
+  const handleEnterDashboard = () => {
+    setShowLanding(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    try {
+      if (!demoMode && !localStorage.getItem('eimo_onboarding_seen')) {
+        setBaselineModalOpen(true);
+      }
+    } catch {
+      // ignore storage access issues
+    }
+  };
+
+  const handleEnterDemo = () => {
+    setDemoMode(true);
+    setBaselineModalOpen(false);
+    setShowLanding(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleGoHome = () => {
+    setShowLanding(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  if (showLanding) {
+    return (
+      <LandingPage
+        lang={lang}
+        onChangeLang={handleChangeLang}
+        onEnterDashboard={handleEnterDashboard}
+        onEnterDemo={handleEnterDemo}
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#f8fafc] text-[#0f172a] flex flex-col">
       <TopHeader
@@ -633,6 +680,7 @@ export default function App() {
         onOpenEmergency={() => setActiveToolModal('emergency')}
         onOpenBaseline={() => setBaselineModalOpen(true)}
         onOpenPhysics={() => setActiveToolModal('physics')}
+        onGoHome={handleGoHome}
         lang={lang}
         onChangeLang={handleChangeLang}
       />

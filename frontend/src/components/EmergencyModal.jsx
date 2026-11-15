@@ -405,7 +405,7 @@ export default function EmergencyModal({
     const spo2Sev = spo2 != null ? (spo2 < 90 ? 'critical' : spo2 < 94 ? 'caution' : 'nominal') : 'nominal';
     const bpSev =
       sbp != null && dbp != null
-        ? sbp >= 150 || sbp < 90 || dbp >= 95
+        ? sbp >= 180 || sbp < 90 || dbp >= 120
           ? 'critical'
           : sbp < 100 || sbp >= 140 || dbp >= 90
           ? 'caution'

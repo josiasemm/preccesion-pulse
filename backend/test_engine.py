@@ -150,6 +150,27 @@ def test_critical_flags_never_produce_nominal_priority():
     assert "Nominal Physiological" not in titles
 
 
+def test_isolated_moderate_hypertension_does_not_trigger_fast_or_critical():
+    profile = BaselineProfile()
+    # PAS 170/76 aislada con FC 68, SpO2 98 y sin déficit neurológico -> PRECAUCIÓN, nunca FAST
+    tel_mod = TelemetryInput(systolic_bp=170.0, diastolic_bp=76.0, heart_rate_bpm=68.0)
+    res_mod = evaluate_full_mission_state(profile, tel_mod, lang="en")
+    assert res_mod["global_status"] == "caution"
+    cardio_p = [p for p in res_mod["priorities"] if "Cardiovascular" in p["title"]]
+    assert len(cardio_p) == 1
+    assert cardio_p[0]["severity"] == "caution"
+    assert cardio_p[0]["protocol_id"] is None
+
+    # Hipotensión (< 90) o crisis hipertensiva (>= 180/120) sí son críticas
+    res_hypo = evaluate_full_mission_state(profile, TelemetryInput(systolic_bp=84.0), lang="en")
+    assert res_hypo["global_status"] == "critical"
+    assert res_hypo["priorities"][0]["protocol_id"] == "abcde_0g_fast"
+
+    res_crisis = evaluate_full_mission_state(profile, TelemetryInput(systolic_bp=186.0), lang="en")
+    assert res_crisis["global_status"] == "critical"
+    assert res_crisis["priorities"][0]["protocol_id"] is None
+
+
 def test_step_telemetry_dt_runs_without_errors():
     profile = BaselineProfile()
     tel = TelemetryInput(environment_id="iss", cdra_scrubber_efficiency=0.2, cabin_ppco2_mmhg=2.5)

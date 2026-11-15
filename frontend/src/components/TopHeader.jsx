@@ -1,5 +1,5 @@
 import React from 'react';
-import { Atom } from 'lucide-react';
+import { Atom, Home } from 'lucide-react';
 import { TRANSLATIONS } from '../i18n';
 
 const ENV_SHORT_LABELS = {
@@ -25,6 +25,7 @@ export default function TopHeader({
   onOpenEmergency,
   onOpenBaseline,
   onOpenPhysics,
+  onGoHome,
   lang = 'es',
   onChangeLang,
 }) {
@@ -129,8 +130,20 @@ export default function TopHeader({
         })}
       </div>
 
-      {/* Fórmulas + Switch ES | EN + Botón Permanente de Emergencia Aguda */}
+      {/* Inicio + Fórmulas + Switch ES | EN + Botón Permanente de Emergencia Aguda */}
       <div className="flex items-center gap-2 shrink-0">
+        {onGoHome && (
+          <button
+            type="button"
+            onClick={onGoHome}
+            title={lang === 'en' ? 'Back to Project Overview' : 'Volver a Portada de Inicio'}
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:bg-white text-[11px] font-semibold text-slate-600 hover:text-sky-700 transition-colors cursor-pointer"
+          >
+            <Home className="w-3.5 h-3.5 text-sky-600" />
+            <span className="hidden 2xl:inline">{lang === 'en' ? 'Home' : 'Inicio'}</span>
+          </button>
+        )}
+
         {onOpenPhysics && (
           <button
             type="button"

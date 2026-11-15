@@ -613,19 +613,23 @@ export function evaluateFullMissionState(rawProfile, rawTelemetry, lang = 'es') 
   const m4 = computeBoneAndRenal(env, profile, telemetry);
   const m5 = computeNeuroAndAnxiety(profile, telemetry, lang);
 
-  const bpCritical =
-    telemetry.systolic_bp >= 150.0 ||
-    telemetry.diastolic_bp >= 95.0 ||
-    telemetry.systolic_bp < 90.0;
-  const hrAbnormal = telemetry.heart_rate_bpm < 45.0 || telemetry.heart_rate_bpm > 110.0;
+  const bpCrisis = telemetry.systolic_bp >= 180.0 || telemetry.diastolic_bp >= 120.0;
+  const bpHypotension = telemetry.systolic_bp < 90.0;
+  const bpCritical = bpCrisis || bpHypotension;
+  const bpElevated =
+    !bpCritical && (telemetry.systolic_bp >= 150.0 || telemetry.diastolic_bp >= 95.0);
+  const hrCritical = telemetry.heart_rate_bpm < 40.0 || telemetry.heart_rate_bpm > 130.0;
+  const hrModerate =
+    !hrCritical && (telemetry.heart_rate_bpm < 45.0 || telemetry.heart_rate_bpm > 110.0);
+  const hrAbnormal = hrCritical || hrModerate;
 
   const zones = {
     head_neuro_ocular: worstStatus(m1.sans_risk, m5.neuro_status),
     thorax_cardio_resp: worstStatus(
       m2.co2_status,
-      telemetry.spo2_percent < 90 || telemetry.ecg_arrhythmia_detected || bpCritical
+      telemetry.spo2_percent < 90 || telemetry.ecg_arrhythmia_detected || bpCritical || hrCritical
         ? 'critical'
-        : telemetry.spo2_percent < 94 || hrAbnormal || m2.flammability_alert || m2.cabin_hypoxia
+        : telemetry.spo2_percent < 94 || bpElevated || hrAbnormal || m2.flammability_alert || m2.cabin_hypoxia
           ? 'caution'
           : 'nominal'
     ),
@@ -710,22 +714,60 @@ export function evaluateFullMissionState(rawProfile, rawTelemetry, lang = 'es') 
     });
   }
 
-  if (telemetry.ecg_arrhythmia_detected || bpCritical || hrAbnormal) {
-    priorities.push({
-      severity: telemetry.ecg_arrhythmia_detected || bpCritical ? 'critical' : 'caution',
-      title: isEn
-        ? `Cardiovascular Alert (BP ${Math.trunc(telemetry.systolic_bp)}/${Math.trunc(telemetry.diastolic_bp)}, HR ${Math.trunc(telemetry.heart_rate_bpm)} bpm)`
-        : `Alerta Cardiovascular (PA ${Math.trunc(telemetry.systolic_bp)}/${Math.trunc(telemetry.diastolic_bp)}, FC ${Math.trunc(telemetry.heart_rate_bpm)} lpm)`,
-      detail: isEn
-        ? (telemetry.ecg_arrhythmia_detected ? 'ECG arrhythmia detected. ' : '') +
-          'Hemodynamic parameter outside nominal operational limits (SBP >= 150 or < 90, DBP >= 95, HR < 45 or > 110).'
-        : (telemetry.ecg_arrhythmia_detected ? 'Arritmia ECG detectada. ' : '') +
-          'Parámetro hemodinámico fuera de límites operativos (PAS >= 150 o < 90, PAD >= 95, FC < 45 o > 110).',
-      action: isEn
-        ? 'Obtain 12-lead ECG, suspend LBNP/exercise, keep airway & AED ready under ABCDE 0g if unstable.'
-        : 'Tomar ECG de 12 derivaciones, suspender LBNP/ejercicio y activar protocolo ABCDE 0g / Carril 2 si hay inestabilidad.',
-      protocol_id: 'abcde_0g_fast',
-    });
+  if (telemetry.ecg_arrhythmia_detected || bpCritical || bpElevated || hrAbnormal) {
+    const sbpInt = Math.trunc(telemetry.systolic_bp);
+    const dbpInt = Math.trunc(telemetry.diastolic_bp);
+    const hrInt = Math.trunc(telemetry.heart_rate_bpm);
+    const isAcuteInstability =
+      telemetry.ecg_arrhythmia_detected || bpHypotension || hrCritical;
+    const hasNeuroOrHypoxia =
+      m5.pvt_status !== 'nominal' || telemetry.spo2_percent < 94.0;
+
+    if (isAcuteInstability) {
+      priorities.push({
+        severity: 'critical',
+        title: isEn
+          ? `Cardiovascular Alert (BP ${sbpInt}/${dbpInt}, HR ${hrInt} bpm)`
+          : `Alerta Cardiovascular (PA ${sbpInt}/${dbpInt}, FC ${hrInt} lpm)`,
+        detail: isEn
+          ? (telemetry.ecg_arrhythmia_detected ? 'ECG arrhythmia detected. ' : '') +
+            'Acute hemodynamic instability / hypotension or severe brady-tachycardia risk (SBP < 90, HR < 40 or > 130 bpm).'
+          : (telemetry.ecg_arrhythmia_detected ? 'Arritmia ECG detectada. ' : '') +
+            'Inestabilidad hemodinámica aguda / hipotensión o bradi-taquicardia severa (PAS < 90, FC < 40 o > 130 lpm).',
+        action: isEn
+          ? 'Obtain 12-lead ECG, suspend LBNP/exercise, keep airway & AED ready under ABCDE 0g if unstable.'
+          : 'Tomar ECG de 12 derivaciones, suspender LBNP/ejercicio y activar protocolo ABCDE 0g / Carril 2 si hay inestabilidad.',
+        protocol_id: 'abcde_0g_fast',
+      });
+    } else if (bpCrisis) {
+      priorities.push({
+        severity: 'critical',
+        title: isEn
+          ? `Cardiovascular Alert: Hypertensive Crisis (BP ${sbpInt}/${dbpInt}, HR ${hrInt} bpm)`
+          : `Alerta Cardiovascular: Crisis Hipertensiva (PA ${sbpInt}/${dbpInt}, FC ${hrInt} lpm)`,
+        detail: isEn
+          ? 'BP >= 180/120 mmHg. Screen urgently for target-organ damage (focal neuro deficit, chest pain, dyspnea or acute SANS) before lowering BP.'
+          : 'PA >= 180/120 mmHg. Descartar daño a órgano blanco (déficit neurológico, dolor torácico, disnea o SANS agudo) antes de descender la presión.',
+        action: isEn
+          ? 'Repeat BP in 5 min, obtain 12-lead ECG, pause ARED/NaCl load, screen focal neuro deficit (FAST only if symptomatic) and initiate Flight Surgeon Lane 2 consult; avoid abrupt BP drop.'
+          : 'Repetir PA en 5 min, tomar ECG de 12 derivaciones, pausar ARED/carga de NaCl, buscar déficit focal (FAST solo si hay síntomas) y consultar Carril 2 con Flight Surgeon; evitar descenso brusco.',
+        protocol_id: hasNeuroOrHypoxia ? 'abcde_0g_fast' : null,
+      });
+    } else {
+      priorities.push({
+        severity: 'caution',
+        title: isEn
+          ? `Cardiovascular Alert: Elevated BP / HR (${sbpInt}/${dbpInt} mmHg, HR ${hrInt} bpm)`
+          : `Alerta Cardiovascular: Elevación Tensional / FC (${sbpInt}/${dbpInt} mmHg, FC ${hrInt} lpm)`,
+        detail: isEn
+          ? 'Parameter outside nominal range (SBP >= 150 or DBP >= 95 mmHg, or HR 40–44 / 111–130 bpm) without crisis (< 180/120) or shock. Isolated asymptomatic hypertension does NOT activate Stroke FAST or AED.'
+          : 'Parámetro fuera de límites nominales (PAS >= 150 o PAD >= 95 mmHg, o FC 40–44 / 111–130 lpm) sin criterio de crisis (< 180/120) ni choque. Una elevación aislada asintomática NO activa protocolo FAST ni DEA.',
+        action: isEn
+          ? 'Rest quietly 5 min and repeat BP on both arms (rule out cuff/ARED artifact); screen for headache, chest pain, dyspnea or focal deficit (ECG/FAST only if symptomatic); pause ARED/acute NaCl loading and monitor.'
+          : 'Reposar 5 min y repetir toma en ambos brazos (descartar artefacto de manguito/ARED); buscar cefalea, dolor torácico, disnea o déficit focal (ECG/FAST solo si hay síntomas); pausar ARED/carga aguda de NaCl y vigilar.',
+        protocol_id: null,
+      });
+    }
   }
 
   if (m3.rad_status !== 'nominal' || m3.requires_serial_cbc_labs) {

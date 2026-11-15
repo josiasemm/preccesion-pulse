@@ -543,15 +543,20 @@ def evaluate_full_mission_state(
             return "caution"
         return "nominal"
 
-    bp_critical = telemetry.systolic_bp >= 150.0 or telemetry.diastolic_bp >= 95.0 or telemetry.systolic_bp < 90.0
-    hr_abnormal = telemetry.heart_rate_bpm < 45.0 or telemetry.heart_rate_bpm > 110.0
+    bp_crisis = telemetry.systolic_bp >= 180.0 or telemetry.diastolic_bp >= 120.0
+    bp_hypotension = telemetry.systolic_bp < 90.0
+    bp_critical = bp_crisis or bp_hypotension
+    bp_elevated = not bp_critical and (telemetry.systolic_bp >= 150.0 or telemetry.diastolic_bp >= 95.0)
+    hr_critical = telemetry.heart_rate_bpm < 40.0 or telemetry.heart_rate_bpm > 130.0
+    hr_moderate = not hr_critical and (telemetry.heart_rate_bpm < 45.0 or telemetry.heart_rate_bpm > 110.0)
+    hr_abnormal = hr_critical or hr_moderate
 
     zones = {
         "head_neuro_ocular": worst_status(m1["sans_risk"], m5["neuro_status"]),
         "thorax_cardio_resp": worst_status(
             m2["co2_status"],
-            "critical" if (telemetry.spo2_percent < 90 or telemetry.ecg_arrhythmia_detected or bp_critical) else (
-                "caution" if (telemetry.spo2_percent < 94 or hr_abnormal or m2["flammability_alert"] or m2["cabin_hypoxia"]) else "nominal"
+            "critical" if (telemetry.spo2_percent < 90 or telemetry.ecg_arrhythmia_detected or bp_critical or hr_critical) else (
+                "caution" if (telemetry.spo2_percent < 94 or bp_elevated or hr_abnormal or m2["flammability_alert"] or m2["cabin_hypoxia"]) else "nominal"
             ),
         ),
         "musculoskeletal_renal": "critical" if telemetry.pocus_dvt_suspicion else m4["bone_renal_status"],
@@ -660,28 +665,75 @@ def evaluate_full_mission_state(
             "protocol_id": "abcde_0g_fast" if telemetry.spo2_percent < 90.0 else "eva_dcs_hypoxia",
         })
 
-    if telemetry.ecg_arrhythmia_detected or bp_critical or hr_abnormal:
-        priorities.append({
-            "severity": "critical" if (telemetry.ecg_arrhythmia_detected or bp_critical) else "caution",
-            "title": (
-                f"Cardiovascular Alert (BP {int(telemetry.systolic_bp)}/{int(telemetry.diastolic_bp)}, HR {int(telemetry.heart_rate_bpm)} bpm)"
-                if is_en
-                else f"Alerta Cardiovascular (PA {int(telemetry.systolic_bp)}/{int(telemetry.diastolic_bp)}, FC {int(telemetry.heart_rate_bpm)} lpm)"
-            ),
-            "detail": (
-                ("ECG arrhythmia detected. " if telemetry.ecg_arrhythmia_detected else "")
-                + "Hemodynamic parameter outside nominal operational limits (SBP >= 150 or < 90, DBP >= 95, HR < 45 or > 110)."
-                if is_en
-                else ("Arritmia ECG detectada. " if telemetry.ecg_arrhythmia_detected else "")
-                + "Parámetro hemodinámico fuera de límites operativos (PAS >= 150 o < 90, PAD >= 95, FC < 45 o > 110)."
-            ),
-            "action": (
-                "Obtain 12-lead ECG, suspend LBNP/exercise, keep airway & AED ready under ABCDE 0g if unstable."
-                if is_en
-                else "Tomar ECG de 12 derivaciones, suspender LBNP/ejercicio y activar protocolo ABCDE 0g / Carril 2 si hay inestabilidad."
-            ),
-            "protocol_id": "abcde_0g_fast",
-        })
+    if telemetry.ecg_arrhythmia_detected or bp_critical or bp_elevated or hr_abnormal:
+        sbp_int = int(telemetry.systolic_bp)
+        dbp_int = int(telemetry.diastolic_bp)
+        hr_int = int(telemetry.heart_rate_bpm)
+        is_acute_instability = telemetry.ecg_arrhythmia_detected or bp_hypotension or hr_critical
+        has_neuro_or_hypoxia = m5["pvt_status"] != "nominal" or telemetry.spo2_percent < 94.0
+
+        if is_acute_instability:
+            priorities.append({
+                "severity": "critical",
+                "title": (
+                    f"Cardiovascular Alert (BP {sbp_int}/{dbp_int}, HR {hr_int} bpm)"
+                    if is_en
+                    else f"Alerta Cardiovascular (PA {sbp_int}/{dbp_int}, FC {hr_int} lpm)"
+                ),
+                "detail": (
+                    ("ECG arrhythmia detected. " if telemetry.ecg_arrhythmia_detected else "")
+                    + "Acute hemodynamic instability / hypotension or severe brady-tachycardia risk (SBP < 90, HR < 40 or > 130 bpm)."
+                    if is_en
+                    else ("Arritmia ECG detectada. " if telemetry.ecg_arrhythmia_detected else "")
+                    + "Inestabilidad hemodinámica aguda / hipotensión o bradi-taquicardia severa (PAS < 90, FC < 40 o > 130 lpm)."
+                ),
+                "action": (
+                    "Obtain 12-lead ECG, suspend LBNP/exercise, keep airway & AED ready under ABCDE 0g if unstable."
+                    if is_en
+                    else "Tomar ECG de 12 derivaciones, suspender LBNP/ejercicio y activar protocolo ABCDE 0g / Carril 2 si hay inestabilidad."
+                ),
+                "protocol_id": "abcde_0g_fast",
+            })
+        elif bp_crisis:
+            priorities.append({
+                "severity": "critical",
+                "title": (
+                    f"Cardiovascular Alert: Hypertensive Crisis (BP {sbp_int}/{dbp_int}, HR {hr_int} bpm)"
+                    if is_en
+                    else f"Alerta Cardiovascular: Crisis Hipertensiva (PA {sbp_int}/{dbp_int}, FC {hr_int} lpm)"
+                ),
+                "detail": (
+                    "BP >= 180/120 mmHg. Screen urgently for target-organ damage (focal neuro deficit, chest pain, dyspnea or acute SANS) before lowering BP."
+                    if is_en
+                    else "PA >= 180/120 mmHg. Descartar daño a órgano blanco (déficit neurológico, dolor torácico, disnea o SANS agudo) antes de descender la presión."
+                ),
+                "action": (
+                    "Repeat BP in 5 min, obtain 12-lead ECG, pause ARED/NaCl load, screen focal neuro deficit (FAST only if symptomatic) and initiate Flight Surgeon Lane 2 consult; avoid abrupt BP drop."
+                    if is_en
+                    else "Repetir PA en 5 min, tomar ECG de 12 derivaciones, pausar ARED/carga de NaCl, buscar déficit focal (FAST solo si hay síntomas) y consultar Carril 2 con Flight Surgeon; evitar descenso brusco."
+                ),
+                "protocol_id": "abcde_0g_fast" if has_neuro_or_hypoxia else None,
+            })
+        else:
+            priorities.append({
+                "severity": "caution",
+                "title": (
+                    f"Cardiovascular Alert: Elevated BP / HR ({sbp_int}/{dbp_int} mmHg, HR {hr_int} bpm)"
+                    if is_en
+                    else f"Alerta Cardiovascular: Elevación Tensional / FC ({sbp_int}/{dbp_int} mmHg, FC {hr_int} lpm)"
+                ),
+                "detail": (
+                    "Parameter outside nominal range (SBP >= 150 or DBP >= 95 mmHg, or HR 40–44 / 111–130 bpm) without crisis (< 180/120) or shock. Isolated asymptomatic hypertension does NOT activate Stroke FAST or AED."
+                    if is_en
+                    else "Parámetro fuera de límites nominales (PAS >= 150 o PAD >= 95 mmHg, o FC 40–44 / 111–130 lpm) sin criterio de crisis (< 180/120) ni choque. Una elevación aislada asintomática NO activa protocolo FAST ni DEA."
+                ),
+                "action": (
+                    "Rest quietly 5 min and repeat BP on both arms (rule out cuff/ARED artifact); screen for headache, chest pain, dyspnea or focal deficit (ECG/FAST only if symptomatic); pause ARED/acute NaCl loading and monitor."
+                    if is_en
+                    else "Reposar 5 min y repetir toma en ambos brazos (descartar artefacto de manguito/ARED); buscar cefalea, dolor torácico, disnea o déficit focal (ECG/FAST solo si hay síntomas); pausar ARED/carga aguda de NaCl y vigilar."
+                ),
+                "protocol_id": None,
+            })
 
     if m3["rad_status"] != "nominal" or m3["requires_serial_cbc_labs"]:
         has_shelter = is_hardware_available(env_id, "Storm Shelter")

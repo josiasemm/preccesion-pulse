@@ -219,7 +219,7 @@ export default function BodyMapSvg({
   const sbp = telemetry.systolic_bp ?? 118;
   const dbp = telemetry.diastolic_bp ?? 76;
   const bpStatus =
-    sbp >= 150 || sbp < 90 || dbp >= 95
+    sbp >= 180 || sbp < 90 || dbp >= 120
       ? 'critical'
       : sbp >= 140 || sbp < 95 || dbp >= 90
       ? 'caution'
