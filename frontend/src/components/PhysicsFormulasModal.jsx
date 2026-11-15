@@ -345,6 +345,16 @@ export default function PhysicsFormulasModal({ isOpen, lang = 'es', onClose }) {
                 </a>
                 .
               </li>
+              <li>
+                <strong>{isEn ? 'Clinical Vital Signs Baseline (NIH / NLM):' : 'Referencia Clínica de Signos Vitales (NIH / NLM):'}</strong>{' '}
+                {isEn
+                  ? 'Baseline HR, BP, respiratory rate & temperature ranges — '
+                  : 'Rangos basales de FC, PA, FR y temperatura — '}
+                <a href="https://medlineplus.gov/vitalsigns.html" target="_blank" rel="noopener noreferrer" className="text-sky-700 underline hover:text-sky-900">
+                  medlineplus.gov/vitalsigns.html
+                </a>
+                .
+              </li>
             </ul>
           </div>
 

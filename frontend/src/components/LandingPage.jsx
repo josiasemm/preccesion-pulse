@@ -287,9 +287,13 @@ const CONTENT = {
         },
         {
           icon: ShieldCheck,
-          title: 'Estándares NASA-STD-3001, OCHMO y REMM (HHS)',
-          desc: 'Límites oficiales de CO₂, inflamabilidad, acústica y neuro-ocular (SANS), más las guías clínicas REMM del HHS para triaje prodrómico y cinética de linfocitos (Andrews).',
+          title: 'Signos Vitales, NASA-STD-3001, OCHMO y REMM',
+          desc: 'Rangos clínicos de signos vitales (FC, PA, FR, Temp y SpO₂/hipoxia en OCHMO-TB-003), límites de CO₂, acústica, SANS (OCHMO-MTB-001) y triaje de radiación REMM (HHS).',
           links: [
+            {
+              label: 'Signos Vitales (NIH MedlinePlus)',
+              href: 'https://medlineplus.gov/vitalsigns.html',
+            },
             {
               label: 'NASA OCHMO Standards',
               href: 'https://www.nasa.gov/ochmo/hsa-standards/',
@@ -594,9 +598,13 @@ const CONTENT = {
         },
         {
           icon: ShieldCheck,
-          title: 'NASA-STD-3001, OCHMO & REMM (HHS)',
-          desc: 'Official crew health and habitability limits for CO₂, O₂ flammability, acoustics, and SANS, plus HHS REMM biodosimetry triage and Andrews lymphocyte kinetics.',
+          title: 'Vital Signs, NASA-STD-3001, OCHMO & REMM',
+          desc: 'Clinical vital-sign ranges (HR, BP, RR, Temp, and SpO₂/hypoxia via OCHMO-TB-003), CO₂, acoustics, SANS (OCHMO-MTB-001), and HHS REMM radiation biodosimetry triage.',
           links: [
+            {
+              label: 'Vital Signs (NIH MedlinePlus)',
+              href: 'https://medlineplus.gov/vitalsigns.html',
+            },
             {
               label: 'NASA OCHMO Standards',
               href: 'https://www.nasa.gov/ochmo/hsa-standards/',
