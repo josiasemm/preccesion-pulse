@@ -300,3 +300,31 @@ def test_pydantic_validation_and_all_demo_scenarios(tmp_path, monkeypatch):
         ).json()
         assert r_drop_co2["global_status"] == "nominal"
         assert r_drop_co2["priorities"][0]["protocol_id"] is None
+
+
+def test_health_and_spa_routing(tmp_path, monkeypatch):
+    monkeypatch.setattr(database, "DB_PATH", tmp_path / "test_spa.db")
+    dist_dir = tmp_path / "dist"
+    dist_dir.mkdir()
+    (dist_dir / "index.html").write_text("<html><body>EIMO SPA</body></html>", encoding="utf-8")
+
+    import main as app_main
+    from fastapi.testclient import TestClient
+
+    monkeypatch.setattr(app_main, "FRONTEND_DIST_DIR", dist_dir.resolve())
+
+    with TestClient(app_main.app) as client:
+        health = client.get("/api/health")
+        assert health.status_code == 200
+        assert health.json()["status"] == "ok"
+
+        missing_api = client.get("/api/does-not-exist")
+        assert missing_api.status_code == 404
+
+        root = client.get("/")
+        assert root.status_code == 200
+        assert "EIMO SPA" in root.text
+
+        traversal = client.get("/../backend/main.py")
+        assert traversal.status_code == 200
+        assert "EIMO SPA" in traversal.text

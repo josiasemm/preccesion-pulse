@@ -9,10 +9,13 @@ from contextlib import asynccontextmanager
 from datetime import date, timedelta
 from functools import lru_cache
 import json
+import os
 from pathlib import Path
 from typing import Dict, Any, Literal
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from swap_matrix import ENVIRONMENTS, get_environment
@@ -55,8 +58,15 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+_extra_cors_origins = [
+    origin.strip()
+    for origin in os.getenv("CORS_ORIGINS", "").split(",")
+    if origin.strip()
+]
+
 app.add_middleware(
     CORSMiddleware,
+    allow_origins=_extra_cors_origins,
     allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1)(:\d+)?$",
     allow_credentials=False,
     allow_methods=["*"],
@@ -231,6 +241,11 @@ class EmergencyPacketRequest(BaseModel):
     heart_rate_bpm: float | None = Field(default=None, ge=20.0, le=240.0)
     spo2_percent: float | None = Field(default=None, ge=50.0, le=100.0)
     notes: str = Field(default="", max_length=1000)
+
+
+@app.get("/api/health")
+def health_check() -> Dict[str, str]:
+    return {"status": "ok", "service": "eimo-cdss"}
 
 
 @app.get("/api/environments")
@@ -432,3 +447,23 @@ def trigger_emergency_store_forward(
             payload=payload,
         )
     return {"packet": packet, "environment": env}
+
+
+FRONTEND_DIST_DIR = (Path(__file__).resolve().parent.parent / "frontend" / "dist").resolve()
+_FRONTEND_ASSETS_DIR = FRONTEND_DIST_DIR / "assets"
+if _FRONTEND_ASSETS_DIR.is_dir():
+    app.mount("/assets", StaticFiles(directory=_FRONTEND_ASSETS_DIR), name="assets")
+
+
+@app.get("/{full_path:path}", include_in_schema=False)
+def serve_frontend_spa(full_path: str):
+    if full_path == "api" or full_path.startswith("api/"):
+        raise HTTPException(status_code=404, detail="Not found")
+    index_file = FRONTEND_DIST_DIR / "index.html"
+    if not index_file.is_file():
+        raise HTTPException(status_code=404, detail="Frontend build not found")
+    if full_path:
+        candidate = (FRONTEND_DIST_DIR / full_path).resolve()
+        if candidate.is_relative_to(FRONTEND_DIST_DIR) and candidate.is_file():
+            return FileResponse(candidate)
+    return FileResponse(index_file)
