@@ -412,7 +412,7 @@ export default function EmergencyModal({
           : 'nominal'
         : 'nominal';
     const hrSev = hr != null ? (hr > 130 || hr < 40 ? 'critical' : hr > 110 || hr < 45 ? 'caution' : 'nominal') : 'nominal';
-    const co2Sev = ppco2 != null ? (ppco2 > 5.3 ? 'critical' : ppco2 > 3.0 ? 'caution' : 'nominal') : 'nominal';
+    const co2Sev = ppco2 != null ? (ppco2 >= 5.0 ? 'critical' : ppco2 > 3.0 ? 'caution' : 'nominal') : 'nominal';
     const gluSev = glucose != null ? (glucose < 70 || glucose >= 250 ? 'critical' : glucose > 125 ? 'caution' : 'nominal') : 'nominal';
 
     return [

@@ -2,7 +2,11 @@
 
 **Offline-first clinical-biophysical decision support system for autonomous crew health management across microgravity, lunar, and Martian habitats.**
 
-<kbd>FastAPI</kbd> &nbsp; <kbd>Python 3.11+</kbd> &nbsp; <kbd>SQLite</kbd> &nbsp; <kbd>React 19</kbd> &nbsp; <kbd>Vite</kbd> &nbsp; <kbd>Tailwind CSS v4</kbd>
+> **Live Autonomous App (GitHub Pages — Zero Backend Required):**  
+> - **Interactive App:** https://josiasemm.github.io/preccesion-pulse/  
+> - **Direct Judge Demo Mode (`?demo=1`):** https://josiasemm.github.io/preccesion-pulse/?demo=1  
+
+<kbd>React 19</kbd> &nbsp; <kbd>In-Browser Physics Engine</kbd> &nbsp; <kbd>localStorage</kbd> &nbsp; <kbd>Vite</kbd> &nbsp; <kbd>Tailwind CSS v4</kbd> &nbsp; <kbd>FastAPI + SQLite (Optional Local API)</kbd>
 
 <br />
 
@@ -30,7 +34,7 @@
 4. **Two-Lane Emergency Architecture:** Separates routine autonomous care (Lane 1) from acute red-flag stabilization (`ABCDE 0g + FAST`) and Store-and-Forward packet queuing to Mission Control (Lane 2).
 
 ### 🛡️ Platform Capabilities
-- [x] **Continuous SQLite State**: Hydrates the last persisted crew evaluation on startup and logs new clinical events locally
+- [x] **100% Autonomous Browser Execution + Continuous Local State**: Runs the full deterministic biophysical engine natively in the browser with `localStorage` persistence (GitHub Pages ready) or against the optional local FastAPI + SQLite server (`VITE_API_BASE_URL`)
 - [x] **Real-Time $\Delta t$ Physics Step**: Integrates $\text{ppCO}_2$ buildup/CDRA removal and sympathetic/ONSD response over discrete time steps
 - [x] **Interactive Countermeasures**: Toggle SPE storm shelter, potassium citrate, alendronate, pre-sleep window, and CDRA scrubber efficiency directly against the engine
 - [x] **Store-and-Forward Queue (Lane 2)**: Queues acute emergency packets offline and syncs them when Earth link windows open
@@ -77,15 +81,14 @@ Sample telemetry datasets for testing CSV/JSON ingestion are included in [`data/
 ```mermaid
 flowchart LR
     Crew["Astronaut / Judge UI"] --> Web["React 19 + Vite + Tailwind v4"]
-    Web --> API["FastAPI REST API (Offline-First)"]
-    API --> Engine["Coupled Biophysical Engine<br/>(physics_engine.py + swap_matrix.py)"]
-    API --> DB["SQLite Local Store<br/>(Baseline, Logs, Lane 2 Queue)"]
-    API --> Protocols["Clinical Protocols<br/>(protocolos.json)"]
+    Web --> Client["Dual API Client (client.js)"]
+    Client -->|"Default (GitHub Pages / Offline)"| BrowserEngine["In-Browser Engine + localStorage<br/>(frontend/src/engine/)"]
+    Client -->|"Optional VITE_API_BASE_URL"| API["FastAPI REST API + SQLite<br/>(backend/)"]
 ```
 
 ```text
 space-apps-2026/
-├── backend/
+├── backend/                        # Optional FastAPI + SQLite local server & test suite
 │   ├── main.py                     # FastAPI endpoints (/api/evaluate, /api/step, /api/history, /api/emergency-queue)
 │   ├── physics_engine.py           # 5 coupled biophysical models + dt integrator
 │   ├── swap_matrix.py              # Multi-gravity environment & SWaP hardware matrix
@@ -97,10 +100,13 @@ space-apps-2026/
 │   ├── src/
 │   │   ├── App.jsx                 # 3-column dashboard, live dt loop, CSV/JSON import, state
 │   │   ├── i18n.js                 # Bilingual ES/EN dictionary
-│   │   ├── api/client.js           # Typed API client for FastAPI backend
+│   │   ├── api/client.js           # Standalone local engine adapter + optional FastAPI transport
+│   │   ├── engine/                 # 1:1 JS biophysical engine, SWaP matrix, scenarios, localStorage & protocolos.json
 │   │   └── components/             # AnatomySvg, BodyMapSvg, LeftSidebar, TopHeader & clinical modals
 │   ├── package.json                # Frontend metadata and scripts
-│   └── vite.config.js              # Vite dev server and /api proxy
+│   └── vite.config.js              # Vite build config (VITE_BASE_PATH for GitHub Pages) & /api proxy
+├── .github/workflows/
+│   └── deploy-pages.yml            # GitHub Actions CI/CD build & deploy to GitHub Pages
 ├── data/                           # Sample CSV/JSON mission telemetry datasets
 ├── docs/images/                    # README visual assets
 └── LICENSE                         # MIT open source license

@@ -314,7 +314,7 @@ export default function BaselineModal({ isOpen, initialProfile, lang = 'es', onS
                     {isEn ? 'Weight (kg)' : 'Peso (kg)'}
                     <input
                       type="number"
-                      step="0.1"
+                      step="any"
                       min="40"
                       max="150"
                       value={form.weight_kg ?? 72}
@@ -326,7 +326,7 @@ export default function BaselineModal({ isOpen, initialProfile, lang = 'es', onS
                     {isEn ? 'Height (cm)' : 'Estatura (cm)'}
                     <input
                       type="number"
-                      step="0.5"
+                      step="any"
                       min="140"
                       max="210"
                       value={form.height_cm ?? 175}
@@ -419,6 +419,7 @@ export default function BaselineModal({ isOpen, initialProfile, lang = 'es', onS
                     {isEn ? 'Heart Rate (bpm)' : 'Frecuencia Cardíaca (FC lpm)'}
                     <input
                       type="number"
+                      step="any"
                       value={form.hr_baseline_bpm ?? 64}
                       onChange={(e) => updateField('hr_baseline_bpm', e.target.value)}
                       className="px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm"
@@ -430,6 +431,7 @@ export default function BaselineModal({ isOpen, initialProfile, lang = 'es', onS
                     {isEn ? 'Heart Rate Variability (HRV ms)' : 'Variabilidad Cardíaca (HRV ms)'}
                     <input
                       type="number"
+                      step="any"
                       value={form.hrv_baseline_ms ?? 48}
                       onChange={(e) => updateField('hrv_baseline_ms', e.target.value)}
                       className="px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm"
@@ -442,6 +444,7 @@ export default function BaselineModal({ isOpen, initialProfile, lang = 'es', onS
                     <div className="flex items-center gap-1.5">
                       <input
                         type="number"
+                        step="any"
                         value={form.systolic_bp_baseline ?? 115}
                         onChange={(e) => updateField('systolic_bp_baseline', e.target.value)}
                         className="w-1/2 px-3 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm"
@@ -449,6 +452,7 @@ export default function BaselineModal({ isOpen, initialProfile, lang = 'es', onS
                       <span className="text-slate-500">/</span>
                       <input
                         type="number"
+                        step="any"
                         value={form.diastolic_bp_baseline ?? 74}
                         onChange={(e) => updateField('diastolic_bp_baseline', e.target.value)}
                         className="w-1/2 px-3 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm"
@@ -461,7 +465,7 @@ export default function BaselineModal({ isOpen, initialProfile, lang = 'es', onS
                     {isEn ? 'Optic Nerve Sheath (ONSD mm)' : 'Vaina del Nervio Óptico (ONSD mm)'}
                     <input
                       type="number"
-                      step="0.1"
+                      step="any"
                       value={form.onsd_baseline_mm ?? 4.2}
                       onChange={(e) => updateField('onsd_baseline_mm', e.target.value)}
                       className="px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm"
@@ -473,7 +477,7 @@ export default function BaselineModal({ isOpen, initialProfile, lang = 'es', onS
                     {isEn ? 'Intraocular Pressure (IOP mmHg)' : 'Presión Intraocular (IOP mmHg)'}
                     <input
                       type="number"
-                      step="0.5"
+                      step="any"
                       value={form.iop_baseline_mmhg ?? 14}
                       onChange={(e) => updateField('iop_baseline_mmhg', e.target.value)}
                       className="px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm"
@@ -485,7 +489,7 @@ export default function BaselineModal({ isOpen, initialProfile, lang = 'es', onS
                     {isEn ? 'Macular Peripapillary OCT (TRT250 µm)' : 'Espesor Retiniano OCT (TRT250 µm)'}
                     <input
                       type="number"
-                      step="1"
+                      step="any"
                       value={form.oct_trt250_baseline_um ?? 340}
                       onChange={(e) => updateField('oct_trt250_baseline_um', e.target.value)}
                       className="px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm"
@@ -497,7 +501,7 @@ export default function BaselineModal({ isOpen, initialProfile, lang = 'es', onS
                     {isEn ? 'Bone Mineral Density (T-score)' : 'Densidad Mineral Ósea (T-score)'}
                     <input
                       type="number"
-                      step="0.1"
+                      step="any"
                       value={form.bmd_tscore_baseline ?? 0.2}
                       onChange={(e) => updateField('bmd_tscore_baseline', e.target.value)}
                       className="px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm"
@@ -509,6 +513,7 @@ export default function BaselineModal({ isOpen, initialProfile, lang = 'es', onS
                     {isEn ? 'Reaction Time (PVT-B ms)' : 'Tiempo de Reacción (PVT-B ms)'}
                     <input
                       type="number"
+                      step="any"
                       value={form.pvt_baseline_ms ?? 235}
                       onChange={(e) => updateField('pvt_baseline_ms', e.target.value)}
                       className="px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm"
@@ -520,6 +525,7 @@ export default function BaselineModal({ isOpen, initialProfile, lang = 'es', onS
                     {isEn ? 'Baseline Lymphocytes (ALC cells/µL)' : 'Linfocitos Basales (ALC cél/µL)'}
                     <input
                       type="number"
+                      step="any"
                       value={form.alc_baseline_cells_ul ?? 2100}
                       onChange={(e) => updateField('alc_baseline_cells_ul', e.target.value)}
                       className="px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm"
@@ -532,7 +538,7 @@ export default function BaselineModal({ isOpen, initialProfile, lang = 'es', onS
                   {isEn ? 'Prior Career Radiation Dose (mSv)' : 'Radiación Acumulada Previa en Carrera (mSv)'}
                   <input
                     type="number"
-                    step="0.5"
+                    step="any"
                     value={form.prior_career_rad_msv ?? 18}
                     onChange={(e) => updateField('prior_career_rad_msv', e.target.value)}
                     className="px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm"
@@ -632,12 +638,12 @@ export default function BaselineModal({ isOpen, initialProfile, lang = 'es', onS
                   </label>
                   {form.uses_glasses && (
                     <label className="flex items-center gap-2 text-xs font-medium text-slate-700">
-                      {isEn ? 'Baseline diopters (-5.50 to +5.50 D):' : 'Dioptrías basales (-5.50 a +5.50 D):'}
+                      {isEn ? 'Baseline diopters (std -5.50 to +5.50 D):' : 'Dioptrías basales (estándar -5.50 a +5.50 D):'}
                       <input
                         type="number"
-                        step="0.25"
-                        min="-5.5"
-                        max="5.5"
+                        step="any"
+                        min="-15"
+                        max="15"
                         value={form.baseline_refraction_diopters ?? 0}
                         onChange={(e) => updateField('baseline_refraction_diopters', e.target.value)}
                         className="w-24 px-2.5 py-1 rounded-lg border border-slate-200 bg-white text-slate-900 text-xs"

@@ -488,9 +488,12 @@ export default function App() {
   };
 
   const handleResetNominal = () => {
+    const targetEnvId = activeEnvId || 'iss';
+    const targetEnv = environments[targetEnvId];
     const nominalTel = {
       ...(scenarios?.nominal?.telemetry || {}),
-      environment_id: activeEnvId || 'iss',
+      environment_id: targetEnvId,
+      crew_count: targetEnv?.cdra_design_crew ?? scenarios?.nominal?.telemetry?.crew_count ?? 4,
     };
     setActiveScenarioId('nominal');
     runEvaluation(nominalTel);
