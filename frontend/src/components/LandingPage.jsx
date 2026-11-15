@@ -287,16 +287,20 @@ const CONTENT = {
         },
         {
           icon: ShieldCheck,
-          title: 'Signos Vitales, NASA-STD-3001, OCHMO y REMM',
-          desc: 'Rangos clínicos de signos vitales (FC, PA, FR, Temp y SpO₂/hipoxia en OCHMO-TB-003), límites de CO₂, acústica, SANS (OCHMO-MTB-001) y triaje de radiación REMM (HHS).',
+          title: 'Signos Vitales en Vuelo, NASA-STD-3001 y REMM',
+          desc: 'Cuidados médicos en vuelo (OCHMO In-Flight Care y OCHMO-STD-100.1A: pulso, PA, FR, Temp), hipoxia/SpO₂ (TB-003), CO₂, SANS (MTB-001) y triaje de radiación REMM (HHS).',
           links: [
             {
-              label: 'Signos Vitales (NIH MedlinePlus)',
-              href: 'https://medlineplus.gov/vitalsigns.html',
+              label: 'In-Flight Medical Care (NASA)',
+              href: 'https://www.nasa.gov/ochmo/health-and-medical-systems/in-flight-medical-care/',
             },
             {
-              label: 'NASA OCHMO Standards',
-              href: 'https://www.nasa.gov/ochmo/hsa-standards/',
+              label: 'OCHMO-STD-100.1A (NASA)',
+              href: 'https://www.nasa.gov/ochmo/aerospace-medical-certification-standard/',
+            },
+            {
+              label: 'OCHMO Technical Briefs',
+              href: 'https://www.nasa.gov/ochmo/hsa-standards/ochmo-technical-briefs/',
             },
             {
               label: 'NASA Technical Standards',
@@ -598,16 +602,20 @@ const CONTENT = {
         },
         {
           icon: ShieldCheck,
-          title: 'Vital Signs, NASA-STD-3001, OCHMO & REMM',
-          desc: 'Clinical vital-sign ranges (HR, BP, RR, Temp, and SpO₂/hypoxia via OCHMO-TB-003), CO₂, acoustics, SANS (OCHMO-MTB-001), and HHS REMM radiation biodosimetry triage.',
+          title: 'In-Flight Vital Signs, NASA-STD-3001 & REMM',
+          desc: 'NASA in-flight medical care & certification standards (OCHMO-STD-100.1A: HR, BP, RR, Temp), hypoxia/SpO₂ (TB-003), CO₂, SANS (MTB-001), and HHS REMM radiation biodosimetry.',
           links: [
             {
-              label: 'Vital Signs (NIH MedlinePlus)',
-              href: 'https://medlineplus.gov/vitalsigns.html',
+              label: 'In-Flight Medical Care (NASA)',
+              href: 'https://www.nasa.gov/ochmo/health-and-medical-systems/in-flight-medical-care/',
             },
             {
-              label: 'NASA OCHMO Standards',
-              href: 'https://www.nasa.gov/ochmo/hsa-standards/',
+              label: 'OCHMO-STD-100.1A (NASA)',
+              href: 'https://www.nasa.gov/ochmo/aerospace-medical-certification-standard/',
+            },
+            {
+              label: 'OCHMO Technical Briefs',
+              href: 'https://www.nasa.gov/ochmo/hsa-standards/ochmo-technical-briefs/',
             },
             {
               label: 'NASA Technical Standards',

@@ -346,12 +346,17 @@ export default function PhysicsFormulasModal({ isOpen, lang = 'es', onClose }) {
                 .
               </li>
               <li>
-                <strong>{isEn ? 'Clinical Vital Signs Baseline (NIH / NLM):' : 'Referencia Clínica de Signos Vitales (NIH / NLM):'}</strong>{' '}
-                {isEn
-                  ? 'Baseline HR, BP, respiratory rate & temperature ranges — '
-                  : 'Rangos basales de FC, PA, FR y temperatura — '}
-                <a href="https://medlineplus.gov/vitalsigns.html" target="_blank" rel="noopener noreferrer" className="text-sky-700 underline hover:text-sky-900">
-                  medlineplus.gov/vitalsigns.html
+                <strong>{isEn ? 'NASA In-Flight Vital Signs & Medical Care (OCHMO):' : 'Signos Vitales y Atención Médica en Vuelo (NASA OCHMO):'}</strong>{' '}
+                <a href="https://www.nasa.gov/ochmo/health-and-medical-systems/in-flight-medical-care/" target="_blank" rel="noopener noreferrer" className="text-sky-700 underline hover:text-sky-900">
+                  In-Flight Medical Care
+                </a>
+                {' · '}
+                <a href="https://www.nasa.gov/ochmo/aerospace-medical-certification-standard/" target="_blank" rel="noopener noreferrer" className="text-sky-700 underline hover:text-sky-900">
+                  OCHMO-STD-100.1A
+                </a>
+                {' · '}
+                <a href="https://www.nasa.gov/ochmo/hsa-standards/ochmo-technical-briefs/" target="_blank" rel="noopener noreferrer" className="text-sky-700 underline hover:text-sky-900">
+                  OCHMO Technical Briefs
                 </a>
                 .
               </li>
