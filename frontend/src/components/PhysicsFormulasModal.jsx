@@ -293,20 +293,57 @@ export default function PhysicsFormulasModal({ isOpen, lang = 'es', onClose }) {
 
           <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-2">
             <h3 className="text-xs sm:text-sm font-bold text-slate-900">
-              {isEn ? 'Official NASA / OCHMO / REMM References' : 'Referencias y Fuentes Oficiales NASA / OCHMO / REMM'}
+              {isEn
+                ? 'Official Challenge Resources & Standards (NASA / CSA / OCHMO / REMM)'
+                : 'Recursos Oficiales del Reto y Estándares (NASA / CSA / OCHMO / REMM)'}
             </h3>
             <ul className="text-xs text-slate-600 space-y-1.5 list-disc pl-4 leading-relaxed">
               <li>
-                <strong>NASA-STD-3001 Vol. 1 &amp; Vol. 2:</strong> ppCO₂ ([V2 6004], cabin model), acoustic limits ([V2 6078], [V2 6080]), EVA PICO₂ reference ([V2 11039]), O₂ flammability &lt; 23.5% ([V2 11040]), BFO 30d (250 mGy-Eq) &amp; career (&lt; 600 mSv).
+                <strong>NASA Space Apps 2026 HRP Resources:</strong>{' '}
+                <a href="https://www.nasa.gov/hrp/hazards/" target="_blank" rel="noopener noreferrer" className="text-sky-700 underline hover:text-sky-900">
+                  5 Hazards of Human Spaceflight
+                </a>
+                {' · '}
+                <a href="https://www.nasa.gov/hrp/risks/" target="_blank" rel="noopener noreferrer" className="text-sky-700 underline hover:text-sky-900">
+                  Risks of Human Spaceflight
+                </a>
+                {' · '}
+                <a href="https://www.nasa.gov/hrp/ongoing-hrp-research/" target="_blank" rel="noopener noreferrer" className="text-sky-700 underline hover:text-sky-900">
+                  Ongoing HRP Research in Space
+                </a>
+                .
               </li>
               <li>
-                <strong>OCHMO-STD-100.1A &amp; Technical Briefs:</strong> Medical Waivers (OCHMO-STD-100.1A), CO₂ (TB-004), Hypoxia (TB-003), Radiation (TB-020), Orthostatic Intolerance (TB-019 / TB-051), SANS (MTB-001), Renal Health (MTB-003).
+                <strong>Canadian Space Agency (CSA Partner Resources):</strong>{' '}
+                <a href="https://www.asc-csa.gc.ca/eng/news/articles/2026/2026-02-26-monitoring-radiation-astronaut-health.asp" target="_blank" rel="noopener noreferrer" className="text-sky-700 underline hover:text-sky-900">
+                  Monitoring Radiation for Astronaut Health
+                </a>
+                {' · '}
+                <a href="https://www.asc-csa.gc.ca/eng/iss/science/why-do-we-conduct-science-experiments-in-space.asp" target="_blank" rel="noopener noreferrer" className="text-sky-700 underline hover:text-sky-900">
+                  Why Do We Conduct Science Experiments in Space?
+                </a>
+                .
               </li>
               <li>
-                <strong>NASA Human Research Roadmap (HRP) &amp; Brief PVT-B:</strong> Psychomotor Vigilance Test (3-min operational standard, 30 s screening demo in EIMO).
+                <strong>NASA-STD-3001 Vol. 1 &amp; Vol. 2:</strong> ppCO₂ ([V2 6004], cabin model), acoustic limits ([V2 6078], [V2 6080]), EVA PICO₂ ([V2 11039]), O₂ flammability &lt; 23.5% ([V2 11040]), BFO 30d (250 mGy-Eq) &amp; career (&lt; 600 mSv) —{' '}
+                <a href="https://standards.nasa.gov/" target="_blank" rel="noopener noreferrer" className="text-sky-700 underline hover:text-sky-900">
+                  standards.nasa.gov
+                </a>
+                .
               </li>
               <li>
-                <strong>REMM (Radiation Emergency Medical Management):</strong> Andrews lymphocyte depletion kinetics and serial CBC for early biodosimetry.
+                <strong>OCHMO-STD-100.1A &amp; Technical Briefs:</strong> Medical Waivers, CO₂ (TB-004), Hypoxia (TB-003), Radiation (TB-020), Orthostatic Intolerance (TB-019 / TB-051), SANS (MTB-001), Renal Health (MTB-003) —{' '}
+                <a href="https://www.nasa.gov/ochmo/hsa-standards/" target="_blank" rel="noopener noreferrer" className="text-sky-700 underline hover:text-sky-900">
+                  nasa.gov/ochmo/hsa-standards
+                </a>
+                .
+              </li>
+              <li>
+                <strong>REMM (HHS — Radiation Emergency Medical Management):</strong> Andrews lymphocyte depletion kinetics &amp; serial CBC —{' '}
+                <a href="https://remm.hhs.gov/" target="_blank" rel="noopener noreferrer" className="text-sky-700 underline hover:text-sky-900">
+                  remm.hhs.gov
+                </a>
+                .
               </li>
             </ul>
           </div>
@@ -316,7 +353,7 @@ export default function PhysicsFormulasModal({ isOpen, lang = 'es', onClose }) {
             <div className="text-xs text-sky-950 leading-relaxed">
               <strong>{isEn ? 'Deterministic Runtime & SI Disclosure:' : 'Declaración de Uso de Superinteligencia (SI):'}</strong>{' '}
               {isEn
-                ? 'AI/SI tools assisted solely during software engineering and layout design. In orbital or Mars execution, EIMO (Engine for In-Flight Medical Operations) runs 100% deterministically and offline over explicit differential equations and clinical thresholds.'
+                ? 'Superintelligence (SI) tools assisted solely during software engineering and layout design. In orbital or Mars execution, EIMO (Engine for In-Flight Medical Operations) runs 100% deterministically and offline over explicit differential equations and clinical thresholds.'
                 : 'Las herramientas de Superinteligencia (SI) se utilizaron exclusivamente en el diseño arquitectónico y desarrollo del software. En ejecución operativa en órbita o Marte, EIMO (Engine for In-Flight Medical Operations) es 100% determinista, offline y auditable sobre ecuaciones físicas y estándares NASA-STD-3001 / OCHMO-STD-100.1A / REMM.'}
             </div>
           </div>

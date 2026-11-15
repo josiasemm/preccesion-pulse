@@ -4,7 +4,6 @@ import {
   AlertTriangle,
   ArrowRight,
   Atom,
-  BookOpen,
   CheckCircle2,
   ChevronRight,
   Clock,
@@ -228,8 +227,8 @@ const CONTENT = {
       titleAccent: 'resueltas',
       items: [
         {
-          q: '¿Usa Inteligencia Artificial para diagnosticar?',
-          a: 'No. EIMO utiliza un motor biofísico y clínico 100% determinista basado en principios físicos y estándares médicos oficiales, garantizando trazabilidad total sin alucinaciones.',
+          q: '¿Usa Superinteligencia (SI) para diagnosticar?',
+          a: 'No. EIMO utiliza un motor biofísico y clínico 100% determinista basado en principios físicos y estándares médicos oficiales, garantizando trazabilidad total sin alucinaciones. Las herramientas de SI se usaron únicamente como apoyo en el diseño y desarrollo del software.',
         },
         {
           q: '¿Necesita internet o servidor externo para funcionar?',
@@ -240,47 +239,80 @@ const CONTENT = {
           a: 'Una vez dentro del Dashboard, haz clic en el botón "Fórmulas" (ícono de átomo en la barra superior) para ver las 5 derivaciones y sus variables.',
         },
         {
-          q: '¿Qué estándares respaldan los umbrales y protocolos?',
-          a: 'Todos los límites provienen de NASA-STD-3001 Vol. 1 y 2, OCHMO-STD-100.1A, Technical Briefs de OCHMO, NASA HRP PVT-B y las guías REMM del HHS.',
+          q: '¿Qué estándares y recursos de la NASA respaldan el sistema?',
+          a: 'Integramos los recursos oficiales del reto Space Apps 2026 (NASA HRP Hazards, Risks, Ongoing Research y CSA), junto con NASA-STD-3001 Vol. 1 y 2, OCHMO-STD-100.1A / Technical Briefs y las guías REMM del HHS.',
         },
       ],
     },
     sources: {
-      pill: 'Fuentes y código',
+      pill: 'Recursos oficiales del reto',
       titleStart: 'Detrás ',
       titleAccent: 'del Dashboard',
+      disclaimer:
+        'Todos los enlaces fueron verificados. Los recursos de socios externos (como CSA) pertenecen a sus respectivas agencias y no implican respaldo gubernamental de EE. UU.',
       cards: [
         {
-          icon: BookOpen,
-          title: 'Estándares NASA-STD-3001 y OCHMO',
-          desc: 'Documentación oficial sobre salud de tripulación, habitabilidad, límites de CO₂, inflamabilidad, acústica y neuro-ocular (SANS).',
+          icon: Compass,
+          title: 'NASA Data & Resources (Reto Space Apps)',
+          desc: 'Fuentes oficiales publicadas por el Human Research Program (HRP) de la NASA sobre los 5 peligros espaciales, riesgos clínicos e investigaciones activas en Artemis y órbita baja.',
           links: [
             {
-              label: 'NASA OCHMO Briefs',
-              href: 'https://www.nasa.gov/ochmo/health-operations-and-oversight/hsa-standards/',
+              label: '5 Hazards of Human Spaceflight',
+              href: 'https://www.nasa.gov/hrp/hazards/',
             },
             {
-              label: 'NASA Standards',
-              href: 'https://standards.nasa.gov',
+              label: 'Risks of Human Spaceflight',
+              href: 'https://www.nasa.gov/hrp/risks/',
+            },
+            {
+              label: 'Ongoing HRP Research',
+              href: 'https://www.nasa.gov/hrp/ongoing-hrp-research/',
+            },
+          ],
+        },
+        {
+          icon: Sun,
+          title: 'Partner Oficial: Agencia Espacial Canadiense (CSA)',
+          desc: 'Recursos asociados de la CSA sobre monitoreo de radiación (espectrometría de neutrones y dosimetría) y fisiología espacial a bordo de la EEI (anemia espacial, hueso y resistencia a insulina).',
+          links: [
+            {
+              label: 'Monitoring Radiation (CSA)',
+              href: 'https://www.asc-csa.gc.ca/eng/news/articles/2026/2026-02-26-monitoring-radiation-astronaut-health.asp',
+            },
+            {
+              label: 'Why Science in Space? (CSA)',
+              href: 'https://www.asc-csa.gc.ca/eng/iss/science/why-do-we-conduct-science-experiments-in-space.asp',
             },
           ],
         },
         {
           icon: ShieldCheck,
-          title: 'Guías de Radiación (REMM / HHS)',
-          desc: 'Criterios clínicos de triaje por emesis prodrómica y cinética de depleción linfocitaria (Andrews) tras exposición aguda.',
+          title: 'Estándares NASA-STD-3001, OCHMO y REMM (HHS)',
+          desc: 'Límites oficiales de CO₂, inflamabilidad, acústica y neuro-ocular (SANS), más las guías clínicas REMM del HHS para triaje prodrómico y cinética de linfocitos (Andrews).',
           links: [
             {
-              label: 'Ver Guías REMM',
-              href: 'https://www.remm.nlm.gov/',
+              label: 'NASA OCHMO Standards',
+              href: 'https://www.nasa.gov/ochmo/hsa-standards/',
+            },
+            {
+              label: 'NASA Technical Standards',
+              href: 'https://standards.nasa.gov/',
+            },
+            {
+              label: 'REMM Guidance (HHS)',
+              href: 'https://remm.hhs.gov/',
             },
           ],
         },
         {
           icon: FileCode2,
-          title: 'Código Abierto, Datasets y Pruebas',
-          desc: 'Repositorio completo de EIMO en Python/React, archivos CSV/JSON de telemetría en data/ y suite automatizada de 14 pruebas.',
+          title: 'Reto Oficial, Código Abierto y Datasets',
+          desc: 'Ficha oficial del reto 2026, repositorio completo de EIMO en Python/React, telemetría de prueba en data/ y suite automatizada de 14 pruebas.',
           links: [
+            {
+              label: 'Reto Space Apps 2026',
+              href: 'https://www.spaceappschallenge.org/2026/challenges/health-monitoring-software/',
+            },
             {
               label: 'Ver en GitHub',
               href: 'https://github.com/josiasemm/preccesion-pulse',
@@ -502,8 +534,8 @@ const CONTENT = {
       titleAccent: 'answered',
       items: [
         {
-          q: 'Does EIMO use generative AI to diagnose patients?',
-          a: 'No. EIMO runs a 100% deterministic biophysical and clinical engine grounded in physics and aerospace standards for full auditability without hallucinations.',
+          q: 'Does EIMO use Superintelligence (SI) to diagnose patients?',
+          a: 'No. EIMO runs a 100% deterministic biophysical and clinical engine grounded in physics and aerospace standards for full auditability without hallucinations. SI tools assisted strictly during software engineering and layout design.',
         },
         {
           q: 'Does it require internet or a backend server?',
@@ -514,47 +546,80 @@ const CONTENT = {
           a: 'Inside the Dashboard, click the "Physics" button (atom icon in the top bar) to view all 5 model derivations and parameters.',
         },
         {
-          q: 'Which official standards back the thresholds?',
-          a: 'All clinical limits map to NASA-STD-3001 Vol. 1 & 2, OCHMO-STD-100.1A, OCHMO Technical Briefs, NASA HRP PVT-B, and HHS REMM guidelines.',
+          q: 'Which official standards and NASA resources back the system?',
+          a: 'We integrate the official Space Apps 2026 Challenge Resources (NASA HRP Hazards, Risks, Ongoing Research, and CSA), alongside NASA-STD-3001 Vol. 1 & 2, OCHMO-STD-100.1A / Technical Briefs, and HHS REMM guidelines.',
         },
       ],
     },
     sources: {
-      pill: 'Data sources & code',
+      pill: 'Official challenge resources',
       titleStart: 'Behind ',
       titleAccent: 'the Dashboard',
+      disclaimer:
+        'All links verified active. NASA does not endorse any non-U.S. Government entity and is not responsible for content on non-U.S. Government websites (CSA partner resources linked for challenge reference).',
       cards: [
         {
-          icon: BookOpen,
-          title: 'NASA-STD-3001 & OCHMO Standards',
-          desc: 'Official NASA guidance covering crew health, habitability, CO₂ ceilings, flammability, acoustics, and SANS.',
+          icon: Compass,
+          title: 'NASA Data & Resources (Space Apps 2026)',
+          desc: 'Official NASA Human Research Program (HRP) resources covering the 5 hazards of human spaceflight, clinical risks, and ongoing investigations aboard ISS and Artemis.',
           links: [
             {
-              label: 'NASA OCHMO Briefs',
-              href: 'https://www.nasa.gov/ochmo/health-operations-and-oversight/hsa-standards/',
+              label: '5 Hazards of Human Spaceflight',
+              href: 'https://www.nasa.gov/hrp/hazards/',
             },
             {
-              label: 'NASA Standards',
-              href: 'https://standards.nasa.gov',
+              label: 'Risks of Human Spaceflight',
+              href: 'https://www.nasa.gov/hrp/risks/',
+            },
+            {
+              label: 'Ongoing HRP Research',
+              href: 'https://www.nasa.gov/hrp/ongoing-hrp-research/',
+            },
+          ],
+        },
+        {
+          icon: Sun,
+          title: 'Official Partner: Canadian Space Agency (CSA)',
+          desc: 'CSA partner resources on astronaut space radiation monitoring (neutron spectrometry and dosimetry) and ISS physiological research (space anemia, insulin resistance, and bone loss).',
+          links: [
+            {
+              label: 'Monitoring Radiation (CSA)',
+              href: 'https://www.asc-csa.gc.ca/eng/news/articles/2026/2026-02-26-monitoring-radiation-astronaut-health.asp',
+            },
+            {
+              label: 'Why Science in Space? (CSA)',
+              href: 'https://www.asc-csa.gc.ca/eng/iss/science/why-do-we-conduct-science-experiments-in-space.asp',
             },
           ],
         },
         {
           icon: ShieldCheck,
-          title: 'Radiation Biodosimetry (REMM / HHS)',
-          desc: 'Clinical triage criteria for prodromal emesis and Andrews lymphocyte depletion kinetics following acute exposure.',
+          title: 'NASA-STD-3001, OCHMO & REMM (HHS)',
+          desc: 'Official crew health and habitability limits for CO₂, O₂ flammability, acoustics, and SANS, plus HHS REMM biodosimetry triage and Andrews lymphocyte kinetics.',
           links: [
             {
-              label: 'View REMM Guidance',
-              href: 'https://www.remm.nlm.gov/',
+              label: 'NASA OCHMO Standards',
+              href: 'https://www.nasa.gov/ochmo/hsa-standards/',
+            },
+            {
+              label: 'NASA Technical Standards',
+              href: 'https://standards.nasa.gov/',
+            },
+            {
+              label: 'REMM Guidance (HHS)',
+              href: 'https://remm.hhs.gov/',
             },
           ],
         },
         {
           icon: FileCode2,
-          title: 'Open Code, Datasets & Tests',
-          desc: 'Full Python/React repository, CSV/JSON telemetry test sets in data/, and 14 automated pytest verification cases.',
+          title: 'Official Challenge, Open Code & Datasets',
+          desc: 'Space Apps 2026 challenge brief, full Python/React repository, CSV/JSON mission telemetry test sets in data/, and 14 automated pytest verification cases.',
           links: [
+            {
+              label: 'Space Apps Challenge 2026',
+              href: 'https://www.spaceappschallenge.org/2026/challenges/health-monitoring-software/',
+            },
             {
               label: 'View on GitHub',
               href: 'https://github.com/josiasemm/preccesion-pulse',
@@ -1091,7 +1156,7 @@ export default function LandingPage({
         </div>
       </section>
 
-      {/* Detrás del Dashboard (Enlaces directos a NASA, REMM y GitHub) */}
+      {/* Detrás del Dashboard (Recursos oficiales NASA Space Apps, CSA, OCHMO, REMM y GitHub) */}
       <section id="sources" className="py-16 px-5 bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="text-center">
@@ -1102,13 +1167,13 @@ export default function LandingPage({
             </h2>
           </div>
 
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
             {c.sources.cards.map((card) => {
               const SIcon = card.icon;
               return (
                 <div
                   key={card.title}
-                  className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col gap-3"
+                  className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm flex flex-col gap-3.5"
                 >
                   <div className="w-9 h-9 rounded-xl bg-sky-50 border border-sky-100 text-[#0284c7] flex items-center justify-center">
                     <SIcon className="w-4 h-4" />
@@ -1133,6 +1198,10 @@ export default function LandingPage({
               );
             })}
           </div>
+
+          <p className="max-w-3xl mx-auto mt-6 text-center text-xs text-slate-500 leading-relaxed">
+            {c.sources.disclaimer}
+          </p>
         </div>
       </section>
 

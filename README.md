@@ -56,14 +56,29 @@
 
 ## ↳ NASA Data & References
 
-All physiological thresholds, radiation limits, and clinical procedures in **EIMO** are grounded in open NASA and federal space-medicine standards:
+All physiological thresholds, radiation limits, and clinical procedures in **EIMO** are grounded in the official **NASA Space Apps 2026 Challenge Resources** ([Health Monitoring Software](https://www.spaceappschallenge.org/2026/challenges/health-monitoring-software/)) and open aerospace medical standards:
+
+### Official Space Apps 2026 Challenge Resources (NASA & CSA)
+* **NASA Data & Resources:**
+  * [5 Hazards of Human Spaceflight (NASA HRP)](https://www.nasa.gov/hrp/hazards/) — Core hazard architecture (radiation, isolation/confinement, distance from Earth, altered gravity, hostile closed environments).
+  * [Risks of Human Spaceflight (NASA HRP)](https://www.nasa.gov/hrp/risks/) — Clinical risk mapping (SANS, immune dysregulation/viral reactivation, renal stone formation, DCS/hypoxia, sensorimotor).
+  * [Ongoing HRP Research in Space (NASA HRP)](https://www.nasa.gov/hrp/ongoing-hrp-research/) — Active countermeasures and flight hardware references (ARCHeR, CIPHER, B-Complex, OCT, Thigh Cuff, Tempus Pro).
+* **Space Agency Partner Resources (CSA — Canadian Space Agency):**
+  * [Monitoring Radiation for Astronaut Health (CSA)](https://www.asc-csa.gc.ca/eng/news/articles/2026/2026-02-26-monitoring-radiation-astronaut-health.asp) — Space radiation dosimetry and neutron/ionizing monitoring context.
+  * [Why Do We Conduct Science Experiments in Space? (CSA)](https://www.asc-csa.gc.ca/eng/iss/science/why-do-we-conduct-science-experiments-in-space.asp) — ISS physiology findings (space anemia, transient insulin resistance, bone loss) and Earth translation.
+
+> *Note: NASA does not endorse any non-U.S. Government entity and is not responsible for information contained on non-U.S. Government websites (CSA partner resources linked for official challenge reference).*
 
 | Standard / Source | Domain Applied in EIMO |
 | :--- | :--- |
-| **NASA-STD-3001 Vol. 1 & Vol. 2** | Cabin $\text{ppCO}_2$ limits (`[V2 6004]`), continuous/intermittent acoustic noise limits (`[V2 6078]`, `[V2 6080]`), spacesuit $P_{I\text{CO}_2}$ (`[V2 11039]`), oxygen flammability `< 23.5%` (`[V2 11040]`), 30-day BFO radiation limits (`250 mGy-Eq`), and career effective dose (`< 600 mSv`) |
-| **OCHMO-STD-100.1A & Technical Briefs** | Crew medical selection/waivers (`OCHMO-STD-100.1A`), $\text{CO}_2$ (`OCHMO-TB-004`), habitable atmosphere/hypoxia (`OCHMO-TB-003`), ionizing radiation (`OCHMO-TB-020`), orthostatic intolerance/EDL (`OCHMO-TB-019`, `OCHMO-TB-051`), SANS (`OCHMO-MTB-001`, unified $\Delta\text{TRT250}$), and urinary/renal health (`OCHMO-MTB-003`) |
-| **NASA Human Research Roadmap (HRP) & Brief PVT-B** | `30 s` rapid demo screening adapted from the 3-minute Brief Psychomotor Vigilance Test (`PVT-B`, lapse `≥ 355 ms`) |
-| **REMM (Radiation Emergency Medical Management)** | Andrews lymphocyte depletion kinetics and serial CBC tracking for acute radiation biodosimetry |
+| **[NASA-STD-3001 Vol. 1 & Vol. 2](https://standards.nasa.gov/)** | Cabin $\text{ppCO}_2$ limits (`[V2 6004]`), continuous/intermittent acoustic noise limits (`[V2 6078]`, `[V2 6080]`), spacesuit $P_{I\text{CO}_2}$ (`[V2 11039]`), oxygen flammability `< 23.5%` (`[V2 11040]`), 30-day BFO radiation limits (`250 mGy-Eq`), and career effective dose (`< 600 mSv`) |
+| **[OCHMO-STD-100.1A & Technical Briefs](https://www.nasa.gov/ochmo/hsa-standards/)** | Crew medical selection/waivers (`OCHMO-STD-100.1A`), $\text{CO}_2$ (`OCHMO-TB-004`), habitable atmosphere/hypoxia (`OCHMO-TB-003`), ionizing radiation (`OCHMO-TB-020`), orthostatic intolerance/EDL (`OCHMO-TB-019`, `OCHMO-TB-051`), SANS (`OCHMO-MTB-001`, unified $\Delta\text{TRT250}$), and urinary/renal health (`OCHMO-MTB-003`) |
+| **NASA Human Research Program (HRP) & Brief PVT-B** | `30 s` rapid demo screening adapted from the 3-minute Brief Psychomotor Vigilance Test (`PVT-B`, lapse `≥ 355 ms`) |
+| **[REMM (HHS Radiation Emergency Medical Management)](https://remm.hhs.gov/)** | Andrews lymphocyte depletion kinetics and serial CBC tracking for acute radiation biodosimetry |
+
+### Superintelligence (SI) Disclosure
+* **Deterministic Clinical Runtime:** In-flight evaluation in **EIMO** uses **zero generative models**—all triage decisions, safety locks, and alerts run 100% deterministically and offline via differential/algebraic equations and verified clinical thresholds.
+* **Development Acceleration:** Superintelligence (SI) software engineering tools were used during hackathon design, equation verification, UI refactoring, and automated QA testing.
 
 ### Scientific Validation Boundary (Congress Transparency)
 - **Exact Physics & Verified NASA/OCHMO Standards:** Stevin hydrostatic shift ($\Delta P = \rho \Delta g h$), dynamic Alveolar Gas Equation ($P_AO_2$ from `cabin_pressure_psia`, `cabin_o2_percent`, and $\text{ppCO}_2$), $\text{ppCO}_2$ conservation per habitable volume $V_{\text{cab}}$, NASA-STD-3001 thresholds (`[V2 6004/6078/6080/11039/11040]`, including $< 23.5\%$ O₂ flammability ceiling), BFO `250 mGy-Eq` / career `600 mSv`, and REMM Andrews biodosimetry triggers.
