@@ -109,11 +109,11 @@ export default function BaselineModal({ isOpen, initialProfile, lang = 'es', onS
     e.preventDefault();
     setSaveError(null);
     const refr = numOr(form.baseline_refraction_diopters, initialProfile?.baseline_refraction_diopters ?? 0);
-    if (Number.isNaN(refr) || refr < -5.5 || refr > 5.5) {
+    if (Number.isNaN(refr) || refr < -15 || refr > 15) {
       setSaveError(
         isEn
-          ? 'Baseline refraction must be within [-5.50, +5.50] D per aerospace standards.'
-          : 'La refracción basal debe estar entre -5.50 y +5.50 D.'
+          ? 'Baseline refraction must be within [-15.00, +15.00] D.'
+          : 'La refracción basal debe estar entre -15.00 y +15.00 D.'
       );
       setActiveTab('waivers');
       return;
