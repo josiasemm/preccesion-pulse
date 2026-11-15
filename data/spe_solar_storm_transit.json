@@ -1,0 +1,16 @@
+{
+  "environment_id": "transit",
+  "shielding_posture": "nominal",
+  "cabin_ppco2_mmhg": 2.3,
+  "cdra_scrubber_efficiency": 0.94,
+  "spe_event_dose_mgyeq": 380.0,
+  "hours_since_spe": 24.0,
+  "heart_rate_bpm": 82,
+  "systolic_bp": 126,
+  "diastolic_bp": 80,
+  "spo2_percent": 98,
+  "onsd_measured_mm": 4.4,
+  "glucose_mg_dl": 94,
+  "pvt_mean_rt_ms": 270,
+  "skin_rash_or_viral_symptoms": true
+}

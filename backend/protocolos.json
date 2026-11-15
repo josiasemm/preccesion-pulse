@@ -1,0 +1,320 @@
+{
+  "pocus_onsd": {
+    "id": "pocus_onsd",
+    "title": "Ultrasonido Ocular POCUS: Medición de Vaina del Nervio Óptico (ONSD)",
+    "title_en": "Ocular POCUS: Optic Nerve Sheath Diameter (ONSD)",
+    "device": "Ultrasound-2 (POCUS)",
+    "clinical_rationale": "Evalúa distensión de la vaina dural del nervio óptico por congestión cefálica y compartimentalización de LCR (SANS). Como los cambios son submilimétricos, requiere estandarización estricta.",
+    "clinical_rationale_en": "Evaluates dural optic nerve sheath distension driven by cephalad fluid congestion and CSF compartmentalization (SANS). Sub-millimeter precision requires strict technique.",
+    "risk_domain": "Campos Gravitatorios Alterados (SANS)",
+    "risk_domain_en": "Altered Gravity Fields (SANS)",
+    "steps": [
+      "1. Sujeción en 0g: Fija tus pies en los rieles de piso y pide al astronauta que mantenga cabeza neutra y mirada fija exactamente al frente con párpados cerrados.",
+      "2. Preset de Seguridad: Selecciona el preset 'Oftálmico' en el Ultrasound-2 (Índice Mecánico MI < 0.23 e Índice Térmico TI < 1.0 para proteger retina y cristalino).",
+      "3. Cero Compresión Globo-Ocular: Aplica una capa gruesa de gel sobre el párpado cerrado. Apoya tu dedo meñique/anular sobre el reborde óseo orbitario o puente nasal (el transductor debe tocar el gel, nunca aplastar el ojo).",
+      "4. Planos Ortogonales: Toma 3 mediciones en eje horizontal (marca hacia nariz) y 3 en eje vertical (marca hacia arriba) en ambos ojos, congelando la imagen al ver el nervio óptico nítido.",
+      "5. Medición Exacta a 3.0 mm: Traza una línea de 3.0 mm detrás de la papila óptica (borde posterior del globo) y mide ahí el ancho externo-externo de la vaina."
+    ],
+    "steps_en": [
+      "1. 0g Restraint: Lock feet in deck restraints; crewmember keeps neutral head and straight-ahead gaze with eyelids closed.",
+      "2. Safety Preset: Select 'Ophthalmic' preset on Ultrasound-2 (Mechanical Index MI < 0.23, Thermal Index TI < 1.0 to protect retina and lens).",
+      "3. Zero Globe Compression: Apply a thick gel standoff on the closed eyelid. Brace your pinky/ring finger on the orbital rim or nasal bridge (probe touches gel only).",
+      "4. Orthogonal Planes: Capture 3 horizontal (marker nasal) and 3 vertical (marker superior) views bilaterally.",
+      "5. Exact 3.0 mm Caliper: Measure outer-to-outer optic nerve sheath diameter exactly 3.0 mm posterior to the optic disc."
+    ],
+    "decision_thresholds": {
+      "normal": "ONSD < 5.0 mm y cambio respecto a línea base < 0.4 mm.",
+      "caution": "ONSD 5.0 - 5.79 mm o delta >= +0.4 mm -> Iniciar Thigh Cuffs + restringir Na+ < 3 g/d.",
+      "critical": "ONSD >= 5.8 mm, delta >= +0.7 mm o Amsler alterado -> Consultar Flight Surgeon y descartar TVP yugular antes de LBNP."
+    },
+    "decision_thresholds_en": {
+      "normal": "ONSD < 5.0 mm and delta from personal baseline < 0.4 mm.",
+      "caution": "ONSD 5.0 - 5.79 mm or delta >= +0.4 mm -> Apply Thigh Cuffs + Na+ < 3 g/day.",
+      "critical": "ONSD >= 5.8 mm, delta >= +0.7 mm or positive Amsler -> Consult Flight Surgeon and rule out jugular DVT before LBNP."
+    }
+  },
+  "pocus_dvt": {
+    "id": "pocus_dvt",
+    "title": "Ultrasonido Vascular de Descarte TVP (Vena Yugular Interna y Miembros Inferiores)",
+    "title_en": "Vascular POCUS DVT Rule-Out (Internal Jugular & Lower Extremities)",
+    "device": "Ultrasound-2 (POCUS)",
+    "clinical_rationale": "En 0g la redistribución cefálica provoca estasis o flujo retrógrado en la vena yugular interna (IJV). Contraindica LBNP hasta descartar trombosis venosa.",
+    "clinical_rationale_en": "Microgravity cephalad shift causes stasis or retrograde flow in the internal jugular vein (IJV). Strictly contraindicates LBNP until DVT is ruled out.",
+    "risk_domain": "Trombosis Venosa en Microgravedad / Seguridad LBNP",
+    "risk_domain_en": "Microgravity Venous Thrombosis / LBNP Safety",
+    "steps": [
+      "1. Postura Neutra en 0g: Evalúa con el tripulante en reposo sin giro extremo de cuello ni maniobra de Valsalva (no comprimir la vena contralateral durante el escaneo).",
+      "2. Transductor Lineal de Alta Frecuencia: Usa preset 'Vascular/Carótida' en plano transversal entre el cartílago tiroides y la clavícula; identifica la IJV (lateral) frente a la carótida pulsátil.",
+      "3. Prueba de Compresibilidad Unilateral Suave: Aplica presión progresiva con el transductor en yugular interna (un lado a la vez) y en puntos femoral común y poplíteo. Una vena libre colapsa por completo hasta tocar paredes opuestas.",
+      "4. Doppler Color y Espectral: Verifica flujo espontáneo anterógrado sin trombo ecogénico intraluminal ni flujo retrógrado persistente (estasis Grado 3-4)."
+    ],
+    "steps_en": [
+      "1. Neutral 0g Posture: Scan at rest without extreme neck rotation or Valsalva (never compress contralateral IJV simultaneously).",
+      "2. Linear High-Frequency Probe: Use 'Vascular' transverse view; distinguish compressible IJV (lateral) from pulsatile carotid artery.",
+      "3. Gentle Unilateral Compression: Apply graded probe pressure unilaterally on IJV, common femoral and popliteal veins. A patent vein collapses completely until opposite walls touch.",
+      "4. Color & Spectral Doppler: Confirm antegrade flow without echogenic intraluminal thrombus or persistent stasis."
+    ],
+    "decision_thresholds": {
+      "normal": "Colapso completo 100% y flujo anterógrado sin trombo -> LBNP autorizado (si resto de candados limpios).",
+      "critical": "Falta de colapsabilidad venosa o trombo ecogénico -> PROHIBIDO usar LBNP/masajes en la extremidad o cuello; verificar ausencia de sangrado/trombocitopenia (post-SPE) y función renal antes de anticoagular (enoxaparina 1 mg/kg SC c/12h bajo consulta con Flight Surgeon)."
+    },
+    "decision_thresholds_en": {
+      "normal": "100% full venous collapse and normal antegrade Doppler flow -> LBNP cleared (if remaining gates pass).",
+      "critical": "Non-compressible vein or visible thrombus -> LBNP/massage STRICTLY CONTRAINDICATED; verify platelets/no bleeding (post-SPE) and CrCl before anticoagulation (enoxaparin 1 mg/kg SC q12h with Flight Surgeon)."
+    }
+  },
+  "pcba_istat": {
+    "id": "pcba_istat",
+    "title": "Analizador Portátil de Bioquímica Sanguínea (PCBA / Abbott i-STAT)",
+    "title_en": "Portable Clinical Blood Analyzer (PCBA / Abbott i-STAT)",
+    "device": "PCBA (Abbott i-STAT)",
+    "clinical_rationale": "Analiza gases, electrolitos (K+, Ca2+ ionizado), creatinina y glucosa en 2 minutos para descartar hipoglucemia o hipercalcemia renal en vuelo.",
+    "clinical_rationale_en": "Measures blood gases, electrolytes (K+, ionized Ca2+), creatinine and glucose in 2 minutes to rule out hypoglycemia or renal hypercalcemia in flight.",
+    "risk_domain": "Metabólico / Renal / Descarte Orgánico",
+    "risk_domain_en": "Metabolic / Renal / Organic Rule-Out",
+    "steps": [
+      "1. Preparación Térmica: Verifica que el cartucho CHEM8+ o CG4+ esté a temperatura de cabina (18-30 °C) y no caducado.",
+      "2. Punción Capilar en 0g (Sin Ordeñar): Limpia el dedo lateral, pincha con lanceta y deja formar una gota en domo por tensión superficial (no exprimir el dedo para evitar hemólisis y falso K+ elevado).",
+      "3. Carga Libre de Burbujas: Aplica el pozo de entrada del cartucho directo al domo sanguíneo por capilaridad hasta la marca de llenado (sin burbujas de aire) y cierra la pestaña hasta oír clic.",
+      "4. Lectura de Electrolitos y Gases: Inserta en el i-STAT manteniéndolo fijo 120 s (no agitar). Si ppCO2 ambiental > 3 mmHg, no gastes cartucho solo para confirmar hipercapnia ya medida por sensor.",
+      "5. Regla Crítica de Glucosa < 70 mg/dL: SOLO usa 15 g de glucosa/gel bucal si el paciente está alerta y con deglución intacta. Si hay somnolencia, disfagia o déficit focal: vía IV (Dextrosa D50W 25 g o D10W 100-250 mL) o Glucagón 1 mg IM/IN (nunca oral en 0g por broncoaspiración)."
+    ],
+    "steps_en": [
+      "1. Cartridge Prep: Verify CHEM8+ or CG4+ cartridge is at cabin temp (18-30 °C) and unexpired.",
+      "2. 0g Fingerstick (No Milking): Lance lateral finger; let a surface-tension dome form without squeezing (prevents hemolysis and false high K+).",
+      "3. Bubble-Free Fill: Touch cartridge sample well to blood dome by capillarity to fill mark; snap latch closed.",
+      "4. Insert & Read (120 s): Keep stable. Do not spend a cartridge solely to confirm cabin hypercapnia already read by ECLSS.",
+      "5. Hypoglycemia (< 70 mg/dL) Airway Rule: Give 15 g buccal gel ONLY if alert with intact swallow. If altered mental status, dysphagia or focal deficit: IV Dextrose (D50W 25 g / D10W 100-250 mL) or Glucagon 1 mg IM/IN (never oral liquids/tabs in 0g)."
+    ],
+    "decision_thresholds": {
+      "normal": "Glucosa 70-125 mg/dL | Calcio ionizado (iCa2+) 1.12-1.32 mmol/L | K+ 3.5-5.0 mmol/L.",
+      "caution": "iCa2+ 1.33-1.45 mmol/L o Creatinina > 1.3 mg/dL -> Aumentar hidratación y vigilar litiasis/riñón.",
+      "critical": "Glucosa < 70 mg/dL (imitador de ICTUS/ansiedad) o iCa2+ > 1.45 mmol/L o K+ > 5.5 mmol/L -> Corrección inmediata y valorar bloqueo de citrato K+."
+    },
+    "decision_thresholds_en": {
+      "normal": "Glucose 70-125 mg/dL | Ionized Ca2+ 1.12-1.32 mmol/L | K+ 3.5-5.0 mmol/L.",
+      "caution": "iCa2+ 1.33-1.45 mmol/L or Creatinine > 1.3 mg/dL -> Increase hydration and monitor renal stone risk.",
+      "critical": "Glucose < 70 mg/dL (stroke/anxiety mimic) or iCa2+ > 1.45 mmol/L or K+ > 5.5 mmol/L -> Immediate treatment; hold K+ citrate."
+    }
+  },
+  "lbnp_safety": {
+    "id": "lbnp_safety",
+    "title": "Presión Negativa en Miembros Inferiores (LBNP) — Candados de Seguridad",
+    "title_en": "Lower Body Negative Pressure (LBNP) — Safety Interlocks",
+    "device": "LBNP",
+    "clinical_rationale": "Revierte el desplazamiento cefálico de fluidos (SANS). Al secuestrar volumen hacia pelvis y piernas, puede provocar síncope vasovagal o embolismo si fallan los candados previos.",
+    "clinical_rationale_en": "Reverses cephalad fluid shift (SANS). Because it pools blood into pelvis and legs, it risks vasovagal syncope or embolism unless pre-screened.",
+    "risk_domain": "Campos Gravitatorios / Cardiovascular",
+    "risk_domain_en": "Gravity Fields / Cardiovascular",
+    "steps": [
+      "1. Verificación de 3 Candados Obligatorios: (A) Hidratación adecuada (ingesta >= 1.5 L/día, densidad urinaria < 1.020, PAS >= 95 mmHg); (B) Sin sospecha de TVP/coágulo; (C) Sin arritmia, anemia ni waiver ortostático activo ni hernia/cirugía reciente.",
+      "2. Sujeción Interna y Sellado: Coloca silla/arnés interno de sujeción axial en 0g para evitar succión hacia el fondo, sella la falda abdominal arriba de crestas ilíacas sin comprimir epigastrio ni diafragma.",
+      "3. Monitoreo Continuo: Conecta ECG continuo y manguito automático de presión arterial cada 2 minutos antes de aplicar vacío.",
+      "4. Titulación Escalonada: Inicia suave en -15 mmHg (5 min) -> -25 mmHg (15-20 min) -> máx. -40 mmHg si la PA y frecuencia cardíaca toleran.",
+      "5. Criterio de Aborto Inmediato: Libera la válvula de vacío de golpe si aparece bradicardia súbita, diaforesis fría, mareo, náusea o caída de PAS >= 20 mmHg."
+    ],
+    "steps_en": [
+      "1. Verify 3 Mandatory Locks: (A) Adequate hydration (intake >= 1.5 L/day, urine SG < 1.020, SBP >= 95 mmHg); (B) No DVT suspicion; (C) No arrhythmia, active bleed, recent surgery/hernia or orthostatic waiver.",
+      "2. 0g Axial Restraint & Seal: Secure internal saddle/harness to prevent axial suction; seal skirt at iliac crests without compressing diaphragm.",
+      "3. Continuous Vitals: Connect continuous ECG and automated BP cuff q2 min prior to vacuum.",
+      "4. Stepwise Titration: Start -15 mmHg (5 min) -> -25 mmHg (15-20 min) -> max -40 mmHg if BP and HR remain stable.",
+      "5. Immediate Abort: Open emergency release valve immediately for sudden bradycardia, cold diaphoresis, dizziness, nausea or SBP drop >= 20 mmHg."
+    ],
+    "decision_thresholds": {
+      "normal": "FC estable (+5 a +15 lpm tolerables), PAS estable >= 95 mmHg -> Sesión completada sin eventos.",
+      "critical": "Presíncope, FC cae > 15 lpm súbitamente, PAS < 90 mmHg o sospecha de TVP -> Abortar LBNP y abrir válvula de emergencia."
+    },
+    "decision_thresholds_en": {
+      "normal": "Stable HR (+5 to +15 bpm expected), SBP >= 95 mmHg -> Session completed safely.",
+      "critical": "Presyncope, sudden HR drop > 15 bpm, SBP < 90 mmHg or DVT suspicion -> Abort immediately and open relief valve."
+    }
+  },
+  "abcde_0g_fast": {
+    "id": "abcde_0g_fast",
+    "title": "Estabilización Aguda ABCDE en 0g + Escala FAST + Store-and-Forward",
+    "title_en": "Acute 0g ABCDE Stabilization + FAST Scale + Store-and-Forward",
+    "device": "CMRS / Tempus Pro / DEA",
+    "clinical_rationale": "Protocolo Carril 2 para emergencias agudas. Actúa de forma autónoma antes de que llegue la respuesta de Control de Misión (hasta 44 min RTT en conjunción marciana).",
+    "clinical_rationale_en": "Lane 2 emergency protocol. Acts autonomously before Mission Control reply arrives (up to 44 min RTT at Mars conjunction).",
+    "risk_domain": "Emergencia Médica Aguda / Autonomía",
+    "risk_domain_en": "Acute Medical Emergency / Autonomy",
+    "steps": [
+      "1. Seguridad Ambiental (Paso 0): Antes de acercarte verifica ausencia de humo, amoníaco y ppCO2 (< 3.0 mmHg) / O2 nominal en cabina.",
+      "2. A/B (Vía Aérea y Succión en 0g): Sujeta al paciente en camilla CMRS (por 3.ª Ley de Newton sin sujeción no puedes ventilar ni comprimir). En 0g el vómito no cae al suelo: usa succión activa de inmediato y O2 al 100% si SpO2 < 92%.",
+      "3. C (Circulación, SCA / DEA / RCP 0g): En dolor torácico con sospecha coronaria: ECG 12 derivaciones, AAS 162-325 mg masticable tras descartar disección/sangrado (evitar nitratos si PAS < 100 mmHg o afectación VD). En paro: RCP Evetts-Russomano (piernas enganchadas detrás del torso del paciente como punto fijo); seca películas de sudor del tórax, aparta O2 de flujo libre (> 1 m) y aísla al paciente del metal antes de descargar el DEA.",
+      "4. D (Glucosa IV/IM + FAST ICTUS): Mide glucosa capilar (< 70 mg/dL puede imitar ICTUS). Si alerta y deglute: 15 g gel bucal; si alterado/disfagia: Dextrosa IV (D50W 25 g / D10W) o Glucagón 1 mg IM/IN. Si glucosa >= 70: aplica FAST (Cara, Brazo, Habla, Hora exacta); en FAST+ NUNCA dar aspirina ni anticoagulantes empíricos (sin TC en órbita).",
+      "5. E (Anafilaxia, DCS y Paquete Carril 2): Si anafilaxia: epinefrina 1 mg/mL (1:1000) 0.3-0.5 mg IM muslo anterolateral (repetir c/5-15 min si persiste choque/estridor) + O2 100% + bolo NaCl 0.9% IV 500-1000 mL (repetir según respuesta). Si post-EVA sospecha DCS Tipo II: O2 100% mascarilla sellada y recompresión. Envía paquete estructurado al MCC."
+    ],
+    "steps_en": [
+      "1. Scene Safety (Step 0): Verify no smoke, ammonia leak, nominal O2 and ppCO2 (< 3.0 mmHg) before approaching.",
+      "2. A/B (0g Airway & Suction): Restrain patient on CMRS (Newton's 3rd Law makes unrestrained ventilation/CPR impossible). In 0g secretions/vomitus float: use active suction immediately and 100% O2 if SpO2 < 92%.",
+      "3. C (Circulation, ACS / AED / 0g CPR): For chest pain: 12-lead ECG, chewable ASA 162-325 mg if dissection/bleeding ruled out (avoid nitrates if SBP < 100 mmHg or RV infarction). For cardiac arrest: Evetts-Russomano CPR (legs hooked behind patient torso as reaction anchor); dry chest sweat films, move free-flowing O2 > 1 m away and isolate from hull metal before AED shock.",
+      "4. D (IV/IM Glucose + Stroke FAST): Check glucose (< 70 mg/dL mimics stroke). Oral 15 g gel ONLY if alert with intact swallow; otherwise IV Dextrose (D50W 25 g / D10W) or Glucagon 1 mg IM/IN. If >= 70: run FAST; if FAST+, NEVER give empiric aspirin/anticoagulants (no CT in orbit).",
+      "5. E (Anaphylaxis, DCS & Lane 2 Link): For anaphylaxis: epinephrine 1 mg/mL (1:1000) 0.3-0.5 mg IM anterolateral thigh (repeat q5-15 min PRN) + 100% O2 + 0.9% NaCl IV bolus 500-1000 mL (repeat PRN). For post-EVA Type II DCS: 100% sealed O2 + recompression. Stream packet to MCC."
+    ],
+    "decision_thresholds": {
+      "critical": "Cualquier signo positivo FAST (con glucosa normal), dolor torácico inestable, SpO2 < 90% persistente o anafilaxia -> Iniciar estabilización inmediata y abrir enlace Carril 2 a Tierra."
+    },
+    "decision_thresholds_en": {
+      "critical": "Any positive FAST sign (normoglycemic), unstable chest pain, persistent SpO2 < 90% or anaphylaxis -> Stabilize immediately and stream Lane 2 packet to Earth."
+    }
+  },
+  "spe_storm_shelter": {
+    "id": "spe_storm_shelter",
+    "title": "Refugio de Tormenta Solar (SPE) y Seguimiento Hematológico (REMM)",
+    "title_en": "Solar Particle Event (SPE) Storm Shelter & Hematology (REMM)",
+    "device": "Storm Shelter / Dosímetro",
+    "clinical_rationale": "Los protones solares (SPE) tienen longitud de atenuación corta (lambda ~ 12 g/cm^2) y se frenan con hidrógeno (agua, polietileno, raciones).",
+    "clinical_rationale_en": "Solar Particle Event (SPE) protons have short attenuation length (lambda ~ 12 g/cm^2) and stop effectively in hydrogen-rich walls (water, polyethylene, rations).",
+    "risk_domain": "Radiación Espacial / Sistema Inmune",
+    "risk_domain_en": "Space Radiation / Immune System",
+    "steps": [
+      "1. Suspender EVA y Refugiarse (ALARA): Cancela EVA de inmediato y reubica a la tripulación en la zona de máximo blindaje omnidireccional (>= 45 g/cm^2 con bolsas de agua/polietileno 360°).",
+      "2. Triage por Tiempo a Emesis Prodrómica: Registra hora exacta del evento y primer vómito si ocurre (< 2 h sugiere dosis BFO > 2,000 mGy-Eq / > 2 Gy-Eq; 2-4 h sugiere 1,000-2,000 mGy-Eq -> alarma crítica).",
+      "3. Cinética de Linfocitos (Andrews / REMM): Si la dosis estimada a BFO >= 250 mGy-Eq, tomar muestra basal a las 4-6 h y seriadas 24/48/72 h (si no hay analizador hematológico a bordo, registrar recuento diferencial/i-STAT y preparar muestreo para retorno/soporte).",
+      "4. Soporte Inmune y Antiemético: Ondansetrón 4-8 mg ODT/IV para náusea prodrómica, hidratación abundante y evaluación con Flight Surgeon para filgrastim (G-CSF 10 mcg/kg/día SC si H-ARS severo > 2,000 mGy-Eq / < 500 neutrófilos, idealmente < 24 h)."
+    ],
+    "steps_en": [
+      "1. Abort EVA & Shelter (ALARA): Cancel EVA immediately; shelter crew in 360° omnidirectional water/polyethylene shielding (>= 45 g/cm^2).",
+      "2. Prodromal Emesis Triage: Record exact SPE time and time-to-emesis (< 2 h suggests > 2,000 mGy-Eq BFO; 2-4 h suggests 1,000-2,000 mGy-Eq -> critical alert).",
+      "3. Andrews Lymphocyte Kinetics (REMM): If BFO dose >= 250 mGy-Eq, draw 4-6 h baseline and 24/48/72 h serial samples (track CBC/ALC slope where hematology lab is available).",
+      "4. Antiemetic & Marrow Support: Ondansetron 4-8 mg ODT/IV for prodromal nausea, maintain hydration, and consult Flight Surgeon for filgrastim (10 mcg/kg/day SC for severe H-ARS > 2,000 mGy-Eq / ANC < 500)."
+    ],
+    "decision_thresholds": {
+      "normal": "Dosis BFO < 250 mGy-Eq sin síntomas prodrómicos.",
+      "caution": "Dosis BFO 250 - 499 mGy-Eq -> Refugio obligatorio + vigilancia clínica/linfocitaria 48-72h.",
+      "critical": "Dosis BFO >= 500 mGy-Eq o emesis < 2 h post-evento -> Activar Carril 2 y manejo intensivo H-ARS."
+    },
+    "decision_thresholds_en": {
+      "normal": "BFO dose < 250 mGy-Eq with no prodromal symptoms.",
+      "caution": "BFO dose 250 - 499 mGy-Eq -> Mandatory Storm Shelter + 48-72h lymphocyte surveillance.",
+      "critical": "BFO dose >= 500 mGy-Eq or emesis < 2 h post-SPE -> Activate Lane 2 and intensive H-ARS management."
+    }
+  },
+  "renal_stone_pocus": {
+    "id": "renal_stone_pocus",
+    "title": "Manejo de Cólico Nefrítico y Tamizaje POCUS de Litiasis Renal",
+    "title_en": "Renal Colic & POCUS Nephrolithiasis Screening",
+    "device": "Ultrasound-2 (POCUS) / PCBA",
+    "clinical_rationale": "La resorción ósea en 0g libera calcio urinario y la baja diuresis favorece cálculos de oxalato/fosfato de calcio (riesgo elevado durante toda la misión).",
+    "clinical_rationale_en": "0g bone resorption hypercalciuria combined with reduced urine output promotes calcium oxalate/phosphate stones throughout mission duration.",
+    "risk_domain": "Hueso-Riñón / OCHMO-MTB-003",
+    "risk_domain_en": "Bone-Renal Axis / OCHMO-MTB-003",
+    "steps": [
+      "1. Analgesia Escalona y Verifica Creatinina: Verifica alergia a AINEs y Creatinina i-STAT antes de AINEs. Si tolera VO: ibuprofeno 400-600 mg c/8h o ketorolaco 10 mg VO c/6h (máx. 5 d); si tiene náusea/vómito: ketorolaco 30 mg IM o 15-30 mg IV (no exceder paracetamol 3 g/día como coadyuvante en ayuno/deshidratación).",
+      "2. Terapia Expulsiva (Alerta Ortostática): Si cálculo ureteral distal < 10 mm y sin choque/fiebre, valorar tamsulosina 0.4 mg VO c/24h (ADVERTENCIA: riesgo de hipotensión ortostática bajo LBNP, 0.38g o pre-descenso).",
+      "3. POCUS Renal y Vesical: Escanea riñón en flanco bilateral (transductor convexo) buscando dilatación calicial/pélvica (hidronefrosis). Si hay duda vascular, usa Doppler Color para ver artefacto de centelleo ('twinkle') en cálculo.",
+      "4. Signo de Jet Ureteral en Vejiga: Tras hidratación adecuada, observa los orificios ureterales en base vesical 3-5 min con Doppler Color para confirmar chorro urinario intermitente bilateral.",
+      "5. Hidratación y Regla Crítica de Citrato K+: Mantener diuresis >= 2.0-2.5 L/día. CONTRAINDICADO iniciar citrato de potasio 10-20 mEq si hay obstrucción completa (jet ausente), oliguria o Creatinina > 1.3 mg/dL (riesgo letal de hiperkalemia)."
+    ],
+    "steps_en": [
+      "1. Stepped Analgesia & Creatinine Check: Check NSAID allergies and i-STAT Creatinine first. If tolerating PO: ibuprofen 400-600 mg q8h or ketorolac 10 mg PO q6h; if vomiting: ketorolac 30 mg IM or 15-30 mg IV (keep adjunct paracetamol <= 3 g/day if dehydrated).",
+      "2. Expulsive Therapy (Orthostatic Warning): For distal stone < 10 mm without fever/shock, consider tamsulosin 0.4 mg PO q24h (WARN: orthostatic hypotension risk during LBNP, 0.38g or reentry).",
+      "3. Renal & Bladder POCUS: Scan bilateral flanks with convex probe for hydronephrosis and Doppler 'twinkle' artifact.",
+      "4. Bladder Ureteral Jets: Observe ureteral orifices for 3-5 min with Color Doppler to verify bilateral urine jets.",
+      "5. Hydration & K+ Citrate Safety Rule: Target urine output >= 2.0-2.5 L/day. CONTRAINDICATED to give K+ citrate if complete obstruction (absent jet), oliguria or Creatinine > 1.3 mg/dL (hyperkalemia risk)."
+    ],
+    "decision_thresholds": {
+      "normal": "Sin hidronefrosis, jets ureterales bilaterales presentes, iCa2+ <= 1.32 mmol/L.",
+      "critical": "Hidronefrosis severa, ausencia de jet ureteral, fiebre (> 38 °C / urosepsis), oliguria o Cr > 1.3 mg/dL -> Bloquear K+ citrato, antibiótico empírico si fiebre y consultar Flight Surgeon (Carril 2)."
+    },
+    "decision_thresholds_en": {
+      "normal": "No hydronephrosis, bilateral ureteral jets present, iCa2+ <= 1.32 mmol/L.",
+      "critical": "Severe hydronephrosis, absent ureteral jet, fever (> 38 °C / urosepsis), oliguria or Cr > 1.3 mg/dL -> Hold K+ citrate, start empiric antibiotics if febrile and consult Flight Surgeon."
+    }
+  },
+  "fluid_loading_reentry": {
+    "id": "fluid_loading_reentry",
+    "title": "Protocolo Pre-Descenso (Fluid Loading + Prenda Compresiva OIG)",
+    "title_en": "Pre-Descent Protocol (Fluid Loading + OIG Compression Garment)",
+    "device": "OIG / Kentavr / Tempus Pro",
+    "clinical_rationale": "En vuelo prolongado el volumen plasmático cae hasta -13%. Restaurar volumen intravascular antes de reentrar a gravedad parcial o 1g previene intolerancia ortostática y síncope.",
+    "clinical_rationale_en": "Plasma volume contracts up to -13% in prolonged 0g flight. Restoring intravascular volume before reentry prevents orthostatic intolerance and syncope.",
+    "risk_domain": "Reentrada / Gravedad Marciana-Terrestre",
+    "risk_domain_en": "Reentry / Mars-Earth Gravity Transition",
+    "steps": [
+      "1. Regla de Oro (Chequeo SANS + PA): Verifica que NO exista SANS severo (ONSD >= 5.8 mm, Amsler alterado o ΔTRT250 >= 55 um) ni HTA severa (PAS >= 150 mmHg) antes de administrar carga aguda de sodio.",
+      "2. Ventana Pre-Descenso (T-2h a T-1h): Disuelve 8-9 tabletas estándar de NaCl de 1 g (~8-9 g NaCl total, ~0.9% isotónico) en 1.0 L de agua (o solución electrolítica equivalente) y consume gradualmente en 60-90 minutos.",
+      "3. Prenda Anti-Estancamiento: Coloca prenda compresiva OIG / Kentavr o pantalón antigravedad en miembros inferiores y abdomen antes del encendido de descenso.",
+      "4. Incorporación en 3 Tiempos al Aterrizar: Permanecer recostado -> sentarse 3 minutos -> ponerse de pie asistido vigilando mareo o caída de PAS."
+    ],
+    "steps_en": [
+      "1. Golden Check (SANS + BP): Confirm NO severe SANS (ONSD >= 5.8 mm, positive Amsler, ΔTRT250 >= 55 um) and NO severe hypertension (SBP >= 150 mmHg) before acute sodium loading.",
+      "2. Pre-Descent Window (T-2h to T-1h): Dissolve 8-9 standard 1 g NaCl tablets (~0.9% isotonic) in 1.0 L water; drink steadily over 60-90 min.",
+      "3. Lower-Body Compression: Don OIG / Kentavr compression garment before deorbit burn.",
+      "4. 3-Stage Post-Landing Stand: Supine rest -> seated 3 min -> assisted stand while monitoring dizziness/SBP."
+    ],
+    "decision_thresholds": {
+      "normal": "Sin SANS severo ni HTA severa -> Ejecutar carga isotónica completa y prenda compresiva.",
+      "critical": "SANS severo activo o PAS >= 150 mmHg -> Contraindicación relativa a carga agresiva de NaCl; consultar Flight Surgeon para titulación lenta."
+    },
+    "decision_thresholds_en": {
+      "normal": "No severe SANS or SBP >= 150 -> Complete isotonic fluid load + compression suit.",
+      "critical": "Active severe SANS or SBP >= 150 mmHg -> Relative contraindication to aggressive NaCl load; consult Flight Surgeon."
+    }
+  },
+  "eva_dcs_hypoxia": {
+    "id": "eva_dcs_hypoxia",
+    "title": "Manejo de Hipercapnia en Cabina, Hipoxia y Descompresión (DCS Post-EVA)",
+    "title_en": "Cabin Hypercapnia, Hypoxia & Post-EVA Decompression Sickness (DCS)",
+    "device": "O2 100% / Monitor CO2 / CDRA",
+    "clinical_rationale": "Un fallo de ventilación o del absorbedor CDRA dispara ppCO2 (> 3.0 mmHg) causando cefalea e incremento de SANS; la hipoxia o DCS tras EVA requieren oxígeno al 100% inmediato.",
+    "clinical_rationale_en": "CDRA/ventilation failure drives ppCO2 > 3.0 mmHg causing headache and worsening SANS; hypoxia or post-EVA DCS requires immediate 100% oxygen.",
+    "risk_domain": "Atmósfera / EVA / Traje Espacial",
+    "risk_domain_en": "Atmosphere / EVA / Spacesuit",
+    "steps": [
+      "1. Ventilación Forzada Inmediata: En 0g no hay convección natural; orienta ventiladores hacia zona de respiración y suspende ejercicio intenso (reduce generación metabólica de CO2).",
+      "2. Verificación CDRA / Hidróxido de Litio: Revisa eficiencia de scrubber en panel ECLSS (> 0.85) o cambia cartucho de aminas/LiOH de respaldo.",
+      "3. Oxigenación e Inflamabilidad (SpO2 < 94% / O2 < 23.5%): Verifica presión total, ppO2 y límite de inflamabilidad (< 23.5% O2 [V2 11040]); si hay disnea o SpO2 < 92%, administra O2 al 100% por mascarilla sellada y descarta fuga.",
+      "4. Protocolo DCS Post-EVA: Si aparecen parestesias, dolor articular profundo ('bends'), vértigo o disnea tras EVA: O2 al 100% continuo con sellado hermético, inmovilizar extremidad, hidratación oral si alerta y activar recompresión / consulta Flight Surgeon (si existe cámara/traje de sobrepresión disponible)."
+    ],
+    "steps_en": [
+      "1. Immediate Forced Airflow: Without natural buoyancy convection in 0g, direct fans to breathing zone and pause heavy exercise.",
+      "2. Scrubber Check (CDRA / LiOH): Verify ECLSS efficiency (> 0.85) or switch to backup amine/LiOH beds.",
+      "3. Hypoxia & Flammability (SpO2 < 94% / O2 < 23.5%): Check cabin pressure, ppO2 and flammability limit (< 23.5% O2 [V2 11040]); if dyspnea or SpO2 < 92%, give 100% O2 via tight-seal mask and check for leaks.",
+      "4. Post-EVA DCS Protocol: For post-EVA paresthesias, deep joint 'bends', vertigo or dyspnea: immediate tight-seal 100% O2, limb rest, hydration if alert, and recompression / Flight Surgeon consultation."
+    ],
+    "decision_thresholds": {
+      "normal": "ppCO2 <= 3.0 mmHg (NASA-STD-3001 [V2 6004]), O2 < 23.5% ([V2 11040]) y SpO2 >= 94%.",
+      "caution": "ppCO2 3.1 - 4.9 mmHg, O2 >= 23.5% ([V2 11040]) o SpO2 90 - 93% -> Ventilación + revisar CDRA/O2 + O2 por mascarilla si hipoxia.",
+      "critical": "ppCO2 >= 5.0 mmHg, PICO2 traje >= 20 mmHg (contingencia 1h [V2 11039]), SpO2 < 90% o síntomas DCS -> Mascarilla O2 100% + Emergencia Aguda."
+    },
+    "decision_thresholds_en": {
+      "normal": "ppCO2 <= 3.0 mmHg (NASA-STD-3001 [V2 6004]), O2 < 23.5% ([V2 11040]) and SpO2 >= 94%.",
+      "caution": "ppCO2 3.1 - 4.9 mmHg, O2 >= 23.5% ([V2 11040]) or SpO2 90 - 93% -> Forced ventilation + CDRA/O2 check + O2 if hypoxic.",
+      "critical": "ppCO2 >= 5.0 mmHg, suit PICO2 >= 20 mmHg (1h contingency [V2 11039]), SpO2 < 90% or DCS symptoms -> 100% O2 + Acute Emergency."
+    }
+  },
+  "thigh_cuff_sans": {
+    "id": "thigh_cuff_sans",
+    "title": "Brazaletes de Compresión Femoral (Thigh Cuffs / Chibis-alternativo) en SANS",
+    "title_en": "Femoral Venous Compression Cuffs (Thigh Cuffs) for SANS",
+    "device": "Thigh Cuffs / Complejo B",
+    "clinical_rationale": "Cuando el LBNP está bloqueado por candado de seguridad o no existe en el vehículo (ej. Rover), los Thigh Cuffs a 30-50 mmHg secuestran 500-1000 mL en piernas.",
+    "clinical_rationale_en": "When LBNP is locked out or unavailable (e.g., Rover), bilateral Thigh Cuffs at 30-50 mmHg safely pool 500-1000 mL in the legs.",
+    "risk_domain": "Campos Gravitatorios Alterados (SANS)",
+    "risk_domain_en": "Altered Gravity Fields (SANS)",
+    "steps": [
+      "1. Colocación Proximal Bilateral: Ajusta los brazaletes en tercio superior de ambos muslos hasta lograr 30-50 mmHg de presión venosa (solo retiene retorno venoso, NUNCA colapsar pulso arterial pedio).",
+      "2. Verificación Neurovascular Distal: Palpa pulso pedio o tibial posterior y confirma llenado capilar < 2 s; afloja de inmediato si aparece hormigueo o edema progresivo.",
+      "3. Régimen Diurno (Retirar al Dormir): Úsalos en bloques diurnos de 2-4 horas con descanso sin exceder 8-10 h/día (retirar siempre para dormir y antes de usar ARED/Zero T2).",
+      "4. Soporte Metabólico y Sodio: Mantener sodio dietético < 3,000 mg/día y suplementación estándar con Complejo B (tiamina, B2, piridoxina 1.3-2 mg, metilfolato/ácido fólico 400 mcg, B12 2.4 mcg según pauta de misión) por susceptibilidad 1-carbono."
+    ],
+    "steps_en": [
+      "1. Bilateral Proximal Placement: Secure cuffs on upper thighs at 30-50 mmHg venous pressure (never occlude arterial pulse).",
+      "2. Distal Neurovascular Check: Palpate dorsalis pedis / posterior tibial pulse and verify capillary refill < 2 s; loosen immediately if numbness occurs.",
+      "3. Daytime Regimen (Remove for Sleep): Wear 2-4 h daytime blocks up to 8-10 h/day max (always remove for sleep and ARED/Zero T2 exercise).",
+      "4. Metabolic & Sodium Support: Restrict dietary sodium < 3,000 mg/day and maintain mission B-complex (1-carbon pathway susceptibility)."
+    ],
+    "decision_thresholds": {
+      "normal": "Pulso pedio conservado y estabilidad de ONSD (< 5.0 mm) / ΔTRT250 (< 20 um).",
+      "caution": "ONSD 5.0 - 5.79 mm o ΔTRT250 >= 20 um -> Mantener Thigh Cuffs diurnos + Na+ < 3 g/día + monitoreo OCT/POCUS.",
+      "critical": "Edema severo (ONSD >= 5.8 mm / ΔTRT250 >= 55 um) o sospecha de TVP -> SUSPENDER brazaletes si hay sospecha de coágulo y consultar Flight Surgeon."
+    },
+    "decision_thresholds_en": {
+      "normal": "Intact pedal pulse and stable ONSD (< 5.0 mm) / ΔTRT250 (< 20 um).",
+      "caution": "ONSD 5.0 - 5.79 mm or ΔTRT250 >= 20 um -> Continue daytime Thigh Cuffs + Na+ < 3 g/day + OCT/POCUS.",
+      "critical": "Severe edema (ONSD >= 5.8 mm / ΔTRT250 >= 55 um) or suspected DVT -> REMOVE cuffs if DVT suspected and consult Flight Surgeon."
+    }
+  }
+}

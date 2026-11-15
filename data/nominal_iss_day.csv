@@ -1,0 +1,2 @@
+environment_id,shielding_posture,cabin_ppco2_mmhg,cdra_scrubber_efficiency,heart_rate_bpm,systolic_bp,diastolic_bp,spo2_percent,onsd_measured_mm,glucose_mg_dl,pvt_mean_rt_ms,pvt_lapses,water_intake_liters,exercise_adherence_ratio
+iss,nominal,2.1,0.95,68,118,76,98,4.3,92,248,0,2.5,0.95

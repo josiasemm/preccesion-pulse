@@ -1,0 +1,6 @@
+time_hours,environment_id,shielding_posture,cabin_ppco2_mmhg,cdra_scrubber_efficiency,heart_rate_bpm,systolic_bp,diastolic_bp,spo2_percent,onsd_measured_mm,glucose_mg_dl,pvt_mean_rt_ms,pvt_lapses,anxiety_vas,gad2_score
+0.0,iss,nominal,2.2,0.20,66,118,76,98,4.2,93,255,0,2,0
+4.2,iss,nominal,2.9,0.20,70,122,78,98,4.3,92,285,0,3,1
+8.4,iss,nominal,3.5,0.20,75,127,81,98,4.4,92,315,1,5,2
+12.6,iss,nominal,4.1,0.20,80,132,84,97,4.5,91,338,1,6,3
+16.8,iss,nominal,4.6,0.20,85,136,86,97,4.5,91,355,2,7,3
