@@ -619,6 +619,7 @@ function EimoLogoMark({ className = 'w-6 h-6' }) {
 }
 
 function DashboardPreviewFrame({ isEn, onOpenDashboard }) {
+  const previewSrc = `${import.meta.env.BASE_URL}dashboard-preview.jpg`;
   return (
     <div
       onClick={onOpenDashboard}
@@ -631,115 +632,25 @@ function DashboardPreviewFrame({ isEn, onOpenDashboard }) {
         }
       }}
       aria-label={isEn ? 'Open interactive EIMO dashboard' : 'Abrir dashboard interactivo de EIMO'}
-      className="group relative max-w-5xl mx-auto mt-10 rounded-[24px] border-4 border-slate-800/90 bg-white shadow-2xl shadow-sky-900/10 overflow-hidden cursor-pointer transition-transform duration-300 hover:-translate-y-1"
+      className="group relative max-w-5xl mx-auto mt-10 cursor-pointer"
     >
-      {/* Mini Top Header */}
-      <div className="bg-white border-b border-slate-200 px-4 py-2.5 flex items-center justify-between gap-2 text-left">
-        <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-full bg-[#0b3d91] text-white flex items-center justify-center shrink-0">
-            <EimoLogoMark className="w-4 h-4" />
-          </div>
-          <span className="text-xs font-bold text-slate-900">
-            EIMO <span className="font-normal text-slate-400">|</span> Astronaut Health CDSS
-          </span>
-          <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-medium text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
-            {isEn ? 'Real-time (~0.05 s)' : 'Tiempo real (~0.05 s)'}
-          </span>
+      {/* Marco estilo tablet con desvanecido limpio inferior */}
+      <div className="relative rounded-t-[28px] bg-gradient-to-b from-[#0f3c78] via-slate-700/80 to-white/0 p-[8px] pb-0 sm:p-[11px] sm:pb-0 shadow-[0_18px_45px_-18px_rgba(3,105,161,0.18)] transition-transform duration-300 group-hover:-translate-y-1 overflow-hidden">
+        <div className="relative rounded-t-[19px] overflow-hidden bg-white border-t border-x border-slate-200">
+          <img
+            src={previewSrc}
+            alt={
+              isEn
+                ? 'EIMO Astronaut Health CDSS live dashboard preview'
+                : 'Vista previa real del dashboard clínico EIMO'
+            }
+            className="w-full h-auto block select-none"
+          />
         </div>
-
-        <div className="hidden md:flex items-center gap-1 bg-slate-100 p-0.5 rounded-lg border border-slate-200 text-[10px] font-semibold">
-          <span className="bg-[#0369a1] text-white px-2 py-0.5 rounded-md">ISS (0g)</span>
-          <span className="text-slate-600 px-2 py-0.5">{isEn ? 'Transit' : 'Tránsito'}</span>
-          <span className="text-slate-600 px-2 py-0.5">Rover (0.165g)</span>
-          <span className="text-slate-600 px-2 py-0.5">{isEn ? 'Mars (0.38g)' : 'Marte (0.38g)'}</span>
-        </div>
-
-        <span className="text-[10px] font-bold bg-red-600 text-white px-2.5 py-1 rounded-lg">
-          {isEn ? 'Acute Emergency' : 'Emergencia Aguda'}
-        </span>
-      </div>
-
-      {/* Mini Body Preview */}
-      <div className="grid grid-cols-1 md:grid-cols-12 bg-[#f8fafc] p-4 gap-4 text-left">
-        {/* Left column mini */}
-        <div className="hidden md:flex md:col-span-3 flex-col gap-2 bg-white border border-slate-200 rounded-xl p-3">
-          <div className="flex items-center justify-between text-[11px] font-bold text-slate-700 border-b border-slate-100 pb-1.5">
-            <span>{isEn ? 'Routine' : 'Rutina'}</span>
-            <span className="text-sky-700">SWaP Kit</span>
-          </div>
-          {[
-            isEn ? 'Passive Sensors (ARCHeR)' : 'Sensores Pasivos (ARCHeR)',
-            isEn ? 'Hydration ≥ 2.5 L' : 'Hidratación ≥ 2.5 L',
-            isEn ? 'Resistive Exercise (ARED)' : 'Ejercicio Resistivo (ARED)',
-            isEn ? '0.1 Hz Resonance Breathing' : 'Respiración Vagal 0.1 Hz',
-            'PVT-B Psychomotor (30 s)',
-          ].map((item) => (
-            <div
-              key={item}
-              className="px-2 py-1.5 rounded-lg bg-slate-50 border border-slate-200/80 text-[10px] font-medium text-slate-700 truncate"
-            >
-              {item}
-            </div>
-          ))}
-        </div>
-
-        {/* Center mini body + vitals */}
-        <div className="md:col-span-6 bg-white border border-slate-200 rounded-xl p-3 grid grid-cols-5 gap-3 items-center">
-          <div className="col-span-2 flex flex-col items-center justify-center py-2">
-            <svg viewBox="0 0 120 220" className="w-24 h-40" aria-hidden="true">
-              <ellipse cx="60" cy="110" rx="52" ry="102" fill="none" stroke="#cbd5e1" strokeDasharray="3 3" />
-              <circle cx="60" cy="30" r="14" fill="#d1fae5" stroke="#059669" strokeWidth="1.5" />
-              <rect x="44" y="48" width="32" height="44" rx="8" fill="#d1fae5" stroke="#059669" strokeWidth="1.5" />
-              <rect x="45" y="96" width="30" height="34" rx="6" fill="#fef3c7" stroke="#d97706" strokeWidth="1.5" />
-              <path d="M44 54 L26 98 M76 54 L94 98 M50 130 L45 196 M70 130 L75 196" stroke="#059669" strokeWidth="6" strokeLinecap="round" opacity="0.45" />
-            </svg>
-            <span className="text-[10px] font-semibold text-slate-500 mt-1">
-              {isEn ? '4 Anatomical Zones' : '4 Zonas Anatómicas'}
-            </span>
-          </div>
-          <div className="col-span-3 grid grid-cols-2 gap-2">
-            {[
-              { label: 'ppCO₂', val: '2.1', unit: 'mmHg', tone: 'border-emerald-200 bg-emerald-50/40' },
-              { label: 'SpO₂', val: '98', unit: '%', tone: 'border-emerald-200 bg-emerald-50/40' },
-              { label: isEn ? 'BP' : 'PA', val: '118/76', unit: 'mmHg', tone: 'border-emerald-200 bg-emerald-50/40' },
-              { label: 'ONSD', val: '4.3', unit: 'mm', tone: 'border-emerald-200 bg-emerald-50/40' },
-              { label: 'PVT-B', val: '248', unit: 'ms', tone: 'border-emerald-200 bg-emerald-50/40' },
-              { label: 'BMD', val: '0.58', unit: '%/mo', tone: 'border-amber-200 bg-amber-50/50' },
-            ].map((v) => (
-              <div key={v.label} className={`rounded-lg border p-2 ${v.tone}`}>
-                <div className="text-[9.5px] font-semibold text-slate-500">{v.label}</div>
-                <div className="text-xs font-bold text-slate-900">
-                  {v.val} <span className="font-normal text-[9.5px] text-slate-500">{v.unit}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Right column mini */}
-        <div className="hidden md:flex md:col-span-3 flex-col gap-2 bg-white border border-slate-200 rounded-xl p-3">
-          <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold text-slate-700 uppercase">
-              {isEn ? 'Priorities' : 'Prioridades'}
-            </span>
-            <span className="inline-flex items-center gap-1 text-[9.5px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
-              <CheckCircle2 className="w-2.5 h-2.5" />
-              NOMINAL
-            </span>
-          </div>
-          <div className="rounded-lg border border-slate-200 bg-slate-50 p-2.5 text-[10px] text-slate-600 leading-relaxed">
-            <span className="font-bold text-slate-800 block mb-1">
-              1. {isEn ? 'Physiological Baseline' : 'Estado Nominal'}
-            </span>
-            {isEn
-              ? 'Coupled telemetry within NASA-STD-3001 limits. Continue preventive countermeasures.'
-              : 'Telemetría acoplada dentro de límites NASA-STD-3001. Mantener contramedidas preventivas.'}
-          </div>
-          <div className="mt-auto text-center text-[10.5px] font-bold text-sky-700 group-hover:underline">
-            {isEn ? 'Click anywhere to enter simulator →' : 'Haz clic para entrar al simulador →'}
-          </div>
-        </div>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-28 sm:h-40 bg-gradient-to-t from-white via-white/90 to-transparent"
+        />
       </div>
     </div>
   );
@@ -849,7 +760,7 @@ export default function LandingPage({
       {/* Hero con brillo azul cielo clínico */}
       <section
         id="hero"
-        className="relative bg-gradient-to-b from-sky-100/80 via-sky-50/40 to-white pt-14 pb-16 px-5 text-center"
+        className="relative bg-gradient-to-b from-sky-100/80 via-sky-50/40 to-white pt-14 pb-4 px-5 text-center"
       >
         <div className="max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/90 border border-sky-200 text-sky-800 text-[11.5px] font-semibold shadow-2xs mb-6">
@@ -884,7 +795,7 @@ export default function LandingPage({
       </section>
 
       {/* Por qué importa */}
-      <section className="py-16 px-5 bg-[#f8fafc]/60">
+      <section className="py-16 px-5 bg-gradient-to-b from-white to-[#f8fafc]/70">
         <div className="max-w-5xl mx-auto text-center">
           <PillBadge icon={AlertTriangle} label={c.why.pill} />
           <h2 className="mt-4 text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">
