@@ -236,7 +236,7 @@ export default function App() {
   const [backendError, setBackendError] = useState(null);
   const [importNotice, setImportNotice] = useState(null);
   const [lang, setLang] = useState(() => localStorage.getItem('eimo_lang') || 'es');
-  const [liveStream, setLiveStream] = useState(true);
+  const [liveStream, setLiveStream] = useState(false);
   const [emergencyQueue, setEmergencyQueue] = useState([]);
   const telemetryRef = useRef(null);
   telemetryRef.current = telemetry;
@@ -406,7 +406,19 @@ export default function App() {
   const handleSelectEnv = (envId) => {
     setActiveEnvId(envId);
     if (telemetry) {
-      runEvaluation({ ...telemetry, environment_id: envId });
+      const prevEnv = environments[telemetry.environment_id || activeEnvId];
+      const nextEnv = environments[envId];
+      const prevDefaultCrew = prevEnv?.cdra_design_crew ?? 4;
+      const nextDefaultCrew = nextEnv?.cdra_design_crew ?? telemetry.crew_count ?? 4;
+      const nextCrewCount =
+        telemetry.crew_count === undefined || telemetry.crew_count === prevDefaultCrew
+          ? nextDefaultCrew
+          : telemetry.crew_count;
+      runEvaluation({
+        ...telemetry,
+        environment_id: envId,
+        crew_count: nextCrewCount,
+      });
     }
   };
 

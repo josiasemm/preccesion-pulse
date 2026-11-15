@@ -84,7 +84,7 @@ export default function BodyMapSvg({
   onOpenSymptoms,
   onOpenToolModal,
   onOpenProtocol,
-  liveStream = true,
+  liveStream = false,
   onToggleLive,
   lang = 'es',
 }) {
