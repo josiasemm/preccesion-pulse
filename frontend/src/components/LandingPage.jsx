@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Activity,
   AlertTriangle,
@@ -618,10 +618,29 @@ function EimoLogoMark({ className = 'w-6 h-6' }) {
   );
 }
 
-function DashboardPreviewFrame({ isEn, onOpenDashboard }) {
-  const previewSrc = `${import.meta.env.BASE_URL}${
-    isEn ? 'dashboard-preview-en.png' : 'dashboard-preview-es.png'
-  }`;
+function DashboardPreviewFrame({ isEn, lang, onOpenDashboard }) {
+  const screenRef = useRef(null);
+  const [scale, setScale] = useState(1000 / 1400);
+  const DESIGN_W = 1400;
+  const DESIGN_H = 740;
+
+  useEffect(() => {
+    const el = screenRef.current;
+    if (!el) return undefined;
+    const updateScale = () => {
+      if (el.clientWidth > 0) {
+        setScale(el.clientWidth / DESIGN_W);
+      }
+    };
+    updateScale();
+    if (typeof ResizeObserver === 'undefined') return undefined;
+    const ro = new ResizeObserver(updateScale);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const previewUrl = `${window.location.pathname}?view=dashboard&preview=1&lang=${lang}`;
+
   return (
     <div
       onClick={onOpenDashboard}
@@ -634,24 +653,37 @@ function DashboardPreviewFrame({ isEn, onOpenDashboard }) {
         }
       }}
       aria-label={isEn ? 'Open interactive EIMO dashboard' : 'Abrir dashboard interactivo de EIMO'}
-      className="group relative max-w-4xl mx-auto mt-10 cursor-pointer"
+      className="group relative max-w-5xl mx-auto mt-10 cursor-pointer"
     >
-      {/* Marco estilo tablet con desvanecido limpio inferior */}
+      {/* Marco estilo tablet con desvanecido limpio inferior y vista vectorial nativa Retina */}
       <div className="relative rounded-t-[28px] bg-gradient-to-b from-[#0f3c78] via-slate-700/80 to-white/0 p-[8px] pb-0 sm:p-[11px] sm:pb-0 shadow-[0_18px_45px_-18px_rgba(3,105,161,0.18)] transition-transform duration-300 group-hover:-translate-y-1 overflow-hidden">
-        <div className="relative rounded-t-[19px] overflow-hidden bg-white border-t border-x border-slate-200">
-          <img
-            src={previewSrc}
-            alt={
+        <div
+          ref={screenRef}
+          style={{ height: `${Math.round(DESIGN_H * scale)}px` }}
+          className="relative w-full rounded-t-[19px] overflow-hidden bg-white border-t border-x border-slate-200"
+        >
+          <iframe
+            title={
               isEn
                 ? 'EIMO Astronaut Health CDSS live dashboard preview'
                 : 'Vista previa real del dashboard clínico EIMO'
             }
-            className="w-full h-auto block select-none"
+            src={previewUrl}
+            tabIndex={-1}
+            scrolling="no"
+            style={{
+              width: `${DESIGN_W}px`,
+              height: `${DESIGN_H}px`,
+              transform: `scale(${scale})`,
+              transformOrigin: 'top left',
+            }}
+            className="border-0 pointer-events-none select-none bg-white block"
           />
+          <div aria-hidden="true" className="absolute inset-0 z-10" />
         </div>
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-28 sm:h-40 bg-gradient-to-t from-white via-white/90 to-transparent"
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-28 sm:h-40 bg-gradient-to-t from-white via-white/90 to-transparent"
         />
       </div>
     </div>
@@ -792,7 +824,7 @@ export default function LandingPage({
         </div>
 
         <div className="px-1">
-          <DashboardPreviewFrame isEn={isEn} onOpenDashboard={onEnterDashboard} />
+          <DashboardPreviewFrame isEn={isEn} lang={lang} onOpenDashboard={onEnterDashboard} />
         </div>
       </section>
 

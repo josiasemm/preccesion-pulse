@@ -227,6 +227,13 @@ export default function App() {
   const [history, setHistory] = useState([]);
   const [activeEnvId, setActiveEnvId] = useState('iss');
   const [selectedZone, setSelectedZone] = useState('head_neuro_ocular');
+  const [isEmbedPreview] = useState(() => {
+    try {
+      return new URLSearchParams(window.location.search).get('preview') === '1';
+    } catch {
+      return false;
+    }
+  });
   const [demoMode, setDemoMode] = useState(false);
   const [showLanding, setShowLanding] = useState(() => {
     try {
@@ -246,7 +253,18 @@ export default function App() {
   const [protocolModal, setProtocolModal] = useState({ open: false, id: null });
   const [backendError, setBackendError] = useState(null);
   const [importNotice, setImportNotice] = useState(null);
-  const [lang, setLang] = useState(() => localStorage.getItem('eimo_lang') || 'es');
+  const [lang, setLang] = useState(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const urlLang = params.get('lang');
+      if (params.get('preview') === '1' && (urlLang === 'es' || urlLang === 'en')) {
+        return urlLang;
+      }
+      return localStorage.getItem('eimo_lang') || 'es';
+    } catch {
+      return 'es';
+    }
+  });
   const [liveStream, setLiveStream] = useState(false);
   const [emergencyQueue, setEmergencyQueue] = useState([]);
   const telemetryRef = useRef(null);
@@ -349,14 +367,14 @@ export default function App() {
         setScenarios(scRes.scenarios || {});
         setBaseline(baseRes.baseline);
 
-        const lastSaved = histList?.[0]?.telemetry;
+        const lastSaved = isEmbedPreview ? null : histList?.[0]?.telemetry;
         const initialTelemetry =
           lastSaved || scRes.scenarios?.nominal?.telemetry || { environment_id: 'iss' };
         setActiveEnvId(initialTelemetry.environment_id || 'iss');
         setTelemetry(initialTelemetry);
 
         // Solo persistir registro inicial si SQLite estaba vacío (evita filas duplicadas al recargar)
-        const shouldPersistInitial = !histList || histList.length === 0;
+        const shouldPersistInitial = !isEmbedPreview && (!histList || histList.length === 0);
         const evalRes = await api.evaluateTelemetry(initialTelemetry, lang, shouldPersistInitial);
         setEvaluation(evalRes);
         setBackendError(null);
@@ -365,13 +383,15 @@ export default function App() {
           refreshEmergencyQueue(),
         ]);
 
-        const params = new URLSearchParams(window.location.search);
-        const isUrlDemo = params.get('demo') === '1' || params.get('demo') === 'true';
-        const isDirectDashboard = params.get('view') === 'dashboard';
-        if (isUrlDemo) {
-          setDemoMode(true);
-        } else if (isDirectDashboard && !localStorage.getItem('eimo_onboarding_seen')) {
-          setBaselineModalOpen(true);
+        if (!isEmbedPreview) {
+          const params = new URLSearchParams(window.location.search);
+          const isUrlDemo = params.get('demo') === '1' || params.get('demo') === 'true';
+          const isDirectDashboard = params.get('view') === 'dashboard';
+          if (isUrlDemo) {
+            setDemoMode(true);
+          } else if (isDirectDashboard && !localStorage.getItem('eimo_onboarding_seen')) {
+            setBaselineModalOpen(true);
+          }
         }
       } catch (err) {
         setBackendError(err.message);
@@ -938,11 +958,13 @@ export default function App() {
         onClose={() => setActiveToolModal(null)}
       />
 
-      <FloatingMenu
-        demoMode={demoMode}
-        onToggleDemo={() => setDemoMode((v) => !v)}
-        lang={lang}
-      />
+      {!isEmbedPreview && (
+        <FloatingMenu
+          demoMode={demoMode}
+          onToggleDemo={() => setDemoMode((v) => !v)}
+          lang={lang}
+        />
+      )}
     </div>
   );
 }
